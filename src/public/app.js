@@ -2,12 +2,103 @@ import { renderProfile } from './ui/profile-view.js';
 import { renderAnalysis } from './ui/alignment-view.js';
 import { renderDraft } from './ui/draft-view.js';
 import { renderAts } from './ui/ats-view.js';
-const $ = selector => document.querySelector(selector);
-const status = message => { $('#status').textContent = message; };
-async function request(path, options = {}) { const response = await fetch(path, { ...options, headers: { ...(options.body ? { 'content-type': 'application/json' } : {}), ...options.headers } }); if (!response.ok) { const body = await response.json().catch(() => ({})); throw new Error(body.error || `Request failed (${response.status})`); } return response; }
-async function loadProfile() { const response = await request('/api/profile'); const profile = await response.json(); $('#profile-content').innerHTML = renderProfile(profile); const count = profile.skills.filter(item => item.verificationStatus === 'verified').length; $('#verified-count').textContent = `${count} verified skills`; }
-async function analyze(tailor = false) { const description = $('#job-description').value.trim(); if (!description) { status('Paste a job description first.'); return; } status('Analyzing verified evidence…'); try { const response = await request(tailor ? '/api/tailor' : '/api/analyze', { method: 'POST', body: JSON.stringify({ description }) }); const result = await response.json(); const analysis = result.analysis || result; $('#alignment-output').innerHTML = renderAnalysis(analysis); if (tailor) { $('#draft-output').innerHTML = renderDraft(result.draft); $('#ats-output').innerHTML = renderAts(result.ats); status('Draft built using verified records only.'); } else status('Analysis complete. Unverified records were excluded.'); } catch (error) { status(error.message); } }
-$('#analyze-btn').addEventListener('click', () => analyze(false));
-$('#tailor-btn').addEventListener('click', () => analyze(true));
-$('#export-btn').addEventListener('click', async () => { const format = $('#export-format').value; status('Preparing export…'); try { const response = await request('/api/export', { method: 'POST', body: JSON.stringify({ format, description: $('#job-description').value }) }); const blob = await response.blob(); const link = document.createElement('a'); link.href = URL.createObjectURL(blob); link.download = response.headers.get('content-disposition')?.match(/filename="([^"]+)/)?.[1] || `grounded-career.${format}`; link.click(); URL.revokeObjectURL(link.href); status('Download ready.'); } catch (error) { status(error.message); } });
-loadProfile().catch(error => status(error.message));
+
+const el = {
+  verifiedCount: document.getElementById('verified-count'),
+  status: document.getElementById('status'),
+  profile: document.getElementById('profile-content'),
+  jd: document.getElementById('job-description'),
+  analyzeBtn: document.getElementById('analyze-btn'),
+  tailorBtn: document.getElementById('tailor-btn'),
+  exportBtn: document.getElementById('export-btn'),
+  exportFormat: document.getElementById('export-format'),
+  alignment: document.getElementById('alignment-output'),
+  draft: document.getElementById('draft-output'),
+  ats: document.getElementById('ats-output')
+};
+
+let state = {
+  profile: null,
+  analysis: null,
+  draft: null,
+  ats: null
+};
+
+function setStatus(msg) {
+  if (el.status) el.status.textContent = msg;
+}
+
+function countVerifiedSkills(payload) {
+  const p = payload?.profile && typeof payload.profile === 'object' ? payload.profile : payload || {};
+  const skills = Array.isArray(p.skills) ? p.skills : [];
+  return skills.filter((s) => s && s.verificationStatus === 'verified').length;
+}
+
+async function loadProfile() {
+  setStatus('Loading profile…');
+  const res = await fetch('/api/profile');
+  const data = await res.json();
+  state.profile = data?.profile || data;
+  const count = countVerifiedSkills(data);
+  if (el.verifiedCount) el.verifiedCount.textContent = `${count} verified skills`;
+  if (el.profile) el.profile.innerHTML = renderProfile(data);
+  setStatus('Ready.');
+}
+
+el.analyzeBtn?.addEventListener('click', async () => {
+  setStatus('Analyzing…');
+  const res = await fetch('/api/analyze', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ jobDescription: el.jd?.value || '', profile: state.profile })
+  });
+  const data = await res.json();
+  state.analysis = data?.analysis || data;
+  if (el.alignment) el.alignment.innerHTML = renderAnalysis(state.analysis);
+  setStatus('Analysis complete.');
+});
+
+el.tailorBtn?.addEventListener('click', async () => {
+  setStatus('Tailoring draft…');
+  const res = await fetch('/api/tailor', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ jobDescription: el.jd?.value || '', profile: state.profile })
+  });
+  const data = await res.json();
+  state.analysis = data?.analysis || state.analysis;
+  state.draft = data?.draft || data;
+  state.ats = data?.ats || null;
+  if (state.analysis && el.alignment) el.alignment.innerHTML = renderAnalysis(state.analysis);
+  if (el.draft) el.draft.innerHTML = renderDraft(state.draft);
+  if (state.ats && el.ats) el.ats.innerHTML = renderAts(state.ats);
+  setStatus('Draft & ATS ready.');
+});
+
+el.exportBtn?.addEventListener('click', async () => {
+  const format = el.exportFormat?.value || 'markdown';
+  setStatus(`Exporting ${format}…`);
+  const res = await fetch('/api/export', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      format,
+      profile: state.profile,
+      draft: state.draft,
+      analysis: state.analysis
+    })
+  });
+  const data = await res.json();
+  const text = typeof data === 'string' ? data : data?.content ?? JSON.stringify(data, null, 2);
+  if (el.draft) {
+    el.draft.innerHTML = `<pre style="white-space:pre-wrap;margin:0;">${String(text)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')}</pre>`;
+  }
+  setStatus(`Exported ${format}.`);
+});
+
+loadProfile().catch((err) => {
+  setStatus(`Error: ${err.message}`);
+});
