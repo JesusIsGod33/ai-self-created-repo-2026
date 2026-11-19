@@ -1,1 +1,1 @@
-export function groupRoles(roles) { return roles.map(role => ({ employer: role.employer, title: role.title, startDate: role.startDate || null, endDate: role.endDate || null, accomplishments: role.accomplishments || [] })); }
+export function groupRoles(roles) { return roles.map(role=>({id:role.id,source:role.source,verificationStatus:role.verificationStatus,title:role.title,employer:role.employer,startDate:role.startDate||null,endDate:role.endDate||null,accomplishments:Array.isArray(role.accomplishments)?role.accomplishments:[]})); }

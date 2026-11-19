@@ -1,1 +1,1 @@
-export function createMemoryAdapter(initial = {}) { let value = structuredClone(initial); return { get: () => structuredClone(value), replace: next => { value = structuredClone(next); return structuredClone(value); } }; }
+export function createMemoryAdapter(initial={}) { let value=structuredClone(initial);return Object.freeze({get:()=>structuredClone(value),replace(next){value=structuredClone(next);return structuredClone(value);}}); }

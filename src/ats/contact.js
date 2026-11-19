@@ -1,1 +1,1 @@
-export function checkContact(draft) { const issues = []; if (!draft.contact?.name) issues.push('Contact name is missing'); if (!draft.contact?.email && !draft.contact?.phone) issues.push('Add an email address or phone number'); return { name: 'contact', passed: issues.length === 0, issues }; }
+export function checkContact(draft) { const issues=[];if(!draft.contact?.name)issues.push('Contact name is missing');if(!draft.contact?.email&&!draft.contact?.phone)issues.push('Add an email address or phone number');return{name:'contact',passed:issues.length===0,issues}; }

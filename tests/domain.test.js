@@ -3,8 +3,9 @@ import assert from 'node:assert/strict';
 import { validateProfile } from '../src/schemas/profile.js';
 import { analyzeRequirements } from '../src/domain/requirements/index.js';
 import { buildTailoredDraft } from '../src/domain/tailoring/builder.js';
-import profile from '../src/fixtures/master-profile.json' with { type: 'json' };
-
-test('fixture profile satisfies provenance schema', () => assert.deepEqual(validateProfile(profile), []));
-test('analysis only matches verified profile evidence', () => { const result = analyzeRequirements(profile, 'Project management, JavaScript and leadership are required.'); assert.equal(result.requirements.find(x => x.requirement === 'project management').matched, true); assert.equal(result.requirements.find(x => x.requirement === 'javascript').matched, false); });
-test('tailored draft excludes unverified claims and preserves provenance', () => { const draft = buildTailoredDraft(profile, analyzeRequirements(profile, 'SQL project management')); const text = JSON.stringify(draft); assert.equal(text.includes('Improved onboarding outcomes by 40 percent'), false); assert.equal(text.includes('JavaScript'), false); for (const record of [...draft.skills, ...draft.roles.flatMap(role => role.accomplishments)]) { assert.ok(record.id); assert.ok(record.source); assert.equal(record.verificationStatus, 'verified'); } });
+import { runAtsChecks } from '../src/ats/index.js';
+import { exportDocument } from '../src/exporters/index.js';
+import profile from '../src/fixtures/master-profile.json' with {type:'json'};
+test('fixture data satisfies nested provenance schema',()=>assert.deepEqual(validateProfile(profile),[]));
+test('only verified skill and accomplishment evidence can match',()=>{const result=analyzeRequirements(profile,'Project management, SQL, JavaScript and leadership are required.');assert.equal(result.requirements.find(x=>x.requirement==='project management').matched,true);assert.equal(result.requirements.find(x=>x.requirement==='sql').matched,true);assert.equal(result.requirements.find(x=>x.requirement==='javascript').matched,false);assert.equal(result.requirements.find(x=>x.requirement==='leadership').matched,false);});
+test('draft and exports enforce provenance lock',()=>{const analysis=analyzeRequirements(profile,'SQL and project management');const draft=buildTailoredDraft(profile,analysis);assert.equal(JSON.stringify(draft).includes('40 percent'),false);assert.equal(JSON.stringify(draft).includes('JavaScript'),false);assert.equal(runAtsChecks(profile,draft,analysis).checks.find(x=>x.name==='provenance-lock').passed,true);for(const format of ['text','markdown','json','audit'])assert.ok(exportDocument(format,profile,draft,analysis).length>0);});
