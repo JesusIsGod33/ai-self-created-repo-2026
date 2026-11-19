@@ -1,2 +1,69 @@
-const verified=items=>(items||[]).filter(item=>item.verificationStatus==='verified'&&item.id&&item.source);
-export function toMarkdown(profile,draft) { const roles=verified(draft.roles);return`# ${draft.contact.name}\n\n${[draft.contact.email,draft.contact.phone,draft.contact.location,draft.contact.website].filter(Boolean).join(' · ')}\n\n${draft.summary?.verificationStatus==='verified'?`## Summary\n\n${draft.summary.text}\n\n`:''}${verified(draft.skills).length?`## Skills\n\n${verified(draft.skills).map(item=>item.name).join(' · ')}\n\n`:''}${roles.map(role=>`## ${role.title} — ${role.employer}${role.startDate?` (${role.startDate}–${role.endDate||'Present'})`:''}\n\n${verified(role.accomplishments).map(item=>`- ${item.text}`).join('\n')}`).join('\n\n')}${verified(draft.education).length?`\n\n## Education\n\n${verified(draft.education).map(item=>`${item.degree||''} ${item.field||''} — ${item.institution}`.trim()).join('\n')}`:''}${verified(draft.certifications).length?`\n\n## Certifications\n\n${verified(draft.certifications).map(item=>`- ${item.name}`).join('\n')}`:''}\n`; }
+export function exportMarkdown(payload = {}) {
+  const profile = payload.profile || {};
+  const draft = payload.draft || {};
+  const contact = draft.contact || profile.contact || {};
+  const lines = [];
+
+  if (contact.name) lines.push(`# ${contact.name}`);
+  const contactMeta = [contact.email, contact.phone, contact.location].filter(Boolean).join(' • ');
+  if (contactMeta) lines.push(contactMeta);
+  if (lines.length > 0) lines.push('');
+
+  const summary = draft.summary || draft.headline || profile.headline || '';
+  if (summary) {
+    lines.push('## Summary');
+    lines.push('');
+    lines.push(String(summary));
+    lines.push('');
+  }
+
+  const roles = Array.isArray(draft.roles) && draft.roles.length > 0
+    ? draft.roles
+    : Array.isArray(profile.roles)
+      ? profile.roles.filter((r) => r && r.verificationStatus === 'verified')
+      : [];
+
+  if (roles.length > 0) {
+    lines.push('## Experience');
+    lines.push('');
+    for (const role of roles) {
+      const titleLine = [role.title, role.company].filter(Boolean).join(' — ');
+      const periodLine = role.period || role.dates || '';
+      if (titleLine) {
+        lines.push(periodLine ? `### ${titleLine} (${periodLine})` : `### ${titleLine}`);
+      }
+      const bullets = Array.isArray(role.accomplishments)
+        ? role.accomplishments.filter((a) => !a.verificationStatus || a.verificationStatus === 'verified')
+        : [];
+      for (const b of bullets) {
+        const text = typeof b === 'string' ? b : b.text || b.statement || b.description || '';
+        const prov = typeof b === 'object' && b.source ? ` \`[${b.verificationStatus || 'verified'} — ${b.source}]\`` : '';
+        if (text) lines.push(`- ${text}${prov}`);
+      }
+      lines.push('');
+    }
+  }
+
+  const verifiedSkills = Array.isArray(draft.skills)
+    ? draft.skills.filter((s) => !s.verificationStatus || s.verificationStatus === 'verified')
+    : Array.isArray(profile.skills)
+      ? profile.skills.filter((s) => s && s.verificationStatus === 'verified')
+      : [];
+
+  if (verifiedSkills.length > 0) {
+    lines.push('## Verified Skills');
+    lines.push('');
+    lines.push(
+      verifiedSkills
+        .map((s) => (typeof s === 'string' ? s : s.name || s.label || ''))
+        .filter(Boolean)
+        .map((name) => `\`${name}\``)
+        .join(', ')
+    );
+    lines.push('');
+  }
+
+  return lines.join('\n').trim();
+}
+
+export default exportMarkdown;

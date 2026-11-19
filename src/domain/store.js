@@ -1,9 +1,36 @@
-import { createMemoryAdapter } from './persistence/memory.js';
-import { validateProfile } from '../schemas/profile.js';
-import initialProfile from '../fixtures/master-profile.json' with {type:'json'};
-let adapter=createMemoryAdapter(initialProfile);
-function assertValid(profile){const errors=validateProfile(profile);if(errors.length)throw Object.assign(new Error(errors.join('; ')),{name:'ValidationError',details:errors});}
-export function getProfile(){return structuredClone(adapter.get());}
-export function replaceProfile(next){assertValid(next);return adapter.replace(next);}
-export function setPersistence(nextAdapter){if(!nextAdapter||typeof nextAdapter.get!=='function'||typeof nextAdapter.replace!=='function')throw new TypeError('Persistence adapter must implement get and replace');adapter=nextAdapter;return adapter;}
-export function resetPersistence(){adapter=createMemoryAdapter(initialProfile);}
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const DEFAULT_PROFILE_PATH = path.resolve(__dirname, '../fixtures/master-profile.json');
+
+function cloneValue(value) {
+  return structuredClone(value);
+}
+
+function loadDefaultProfile() {
+  const raw = fs.readFileSync(DEFAULT_PROFILE_PATH, 'utf-8');
+  return JSON.parse(raw);
+}
+
+export function createStore(initialProfile) {
+  let currentProfile = initialProfile ? cloneValue(initialProfile) : loadDefaultProfile();
+
+  return {
+    getProfile() {
+      return cloneValue(currentProfile);
+    },
+    setProfile(nextProfile) {
+      currentProfile = cloneValue(nextProfile);
+      return cloneValue(currentProfile);
+    },
+    reset() {
+      currentProfile = loadDefaultProfile();
+      return cloneValue(currentProfile);
+    }
+  };
+}
+
+export default createStore;

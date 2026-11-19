@@ -1,122 +1,98 @@
 import { extractRequirements, mapRequirements } from './requirements.js';
+import { buildTailoredDraft } from './tailoring/builder.js';
 
-function matches(text, term) {
-  const source = String(text || '').toLowerCase();
-  const phrase = String(term || '').toLowerCase();
-  return (
-    source.includes(phrase) ||
-    phrase.split(/\s+/).some((word) => word.length > 3 && source.includes(word))
-  );
+function isVerified(record) {
+  return Boolean(record && typeof record === 'object' && record.verificationStatus === 'verified');
 }
 
-function groupByRole(items) {
-  const groups = new Map();
-  for (const item of items) {
-    const key = `${item.roleTitle}|||${item.company}|||${item.startDate}|||${item.endDate}`;
-    if (!groups.has(key)) {
-      groups.set(key, {
-        title: item.roleTitle,
-        company: item.company,
-        startDate: item.startDate,
-        endDate: item.endDate,
-        accomplishments: []
-      });
-    }
-    groups.get(key).accomplishments.push({
-      text: item.text,
-      evidenceId: item.id,
-      source: item.source
-    });
+export function buildTailoredResume(profileOrInput, maybeJd, maybeCtx) {
+  let profile = profileOrInput;
+  let jobDescription = maybeJd;
+  let analysis = maybeCtx;
+
+  if (
+    profileOrInput &&
+    typeof profileOrInput === 'object' &&
+    !Array.isArray(profileOrInput) &&
+    !profileOrInput.roles &&
+    !profileOrInput.skills &&
+    (profileOrInput.profile || profileOrInput.jobDescription || profileOrInput.analysis)
+  ) {
+    profile = profileOrInput.profile || {};
+    jobDescription = profileOrInput.jobDescription || '';
+    analysis = profileOrInput.analysis || null;
   }
-  return [...groups.values()];
-}
 
-export function buildTailoredResume(profile, jobDescription, precomputed = {}) {
-  const requirements = precomputed.requirements || extractRequirements(jobDescription);
-  const mapping = precomputed.mapped || mapRequirements(profile, requirements);
-  const verified = (profile?.roles || []).flatMap((role) =>
-    (role.accomplishments || [])
-      .filter((item) => item.verificationStatus === 'verified')
-      .map((item) => ({
-        ...item,
-        roleTitle: role.title,
-        company: role.company,
-        startDate: role.startDate,
-        endDate: role.endDate
-      }))
-  );
-  const selected = verified
-    .map((item) => ({
-      ...item,
-      relevance: requirements.reduce(
-        (n, req) => n + (matches(`${item.text} ${(item.skills || []).join(' ')}`, req) ? 1 : 0),
-        0
-      )
-    }))
-    .filter((item) => item.relevance > 0)
-    .sort((a, b) => b.relevance - a.relevance)
-    .slice(0, 8);
-  const fallback = verified.slice(0, 5);
-  const accomplishments = selected.length ? selected : fallback;
-  const summaryVariant =
-    (profile?.summaryVariants || []).find((item) => item.verificationStatus === 'verified')?.text ||
-    profile?.summary ||
-    '';
+  const jdText =
+    typeof jobDescription === 'string'
+      ? jobDescription
+      : String(jobDescription?.text || jobDescription?.description || '');
+
+  const requirements = Array.isArray(analysis?.requirements)
+    ? analysis.requirements
+    : extractRequirements(jdText);
+  const mapped = Array.isArray(analysis?.mapped)
+    ? analysis.mapped
+    : Array.isArray(analysis?.mapping)
+      ? analysis.mapping
+      : mapRequirements(profile || {}, requirements);
+
+  const verifiedSkills = (Array.isArray(profile?.skills) ? profile.skills : []).filter(isVerified);
+  const verifiedTools = (Array.isArray(profile?.tools) ? profile.tools : []).filter(isVerified);
+  const verifiedRoles = (Array.isArray(profile?.roles) ? profile.roles : [])
+    .filter(isVerified)
+    .map((role) => ({
+      ...role,
+      accomplishments: (Array.isArray(role.accomplishments) ? role.accomplishments : [])
+        .filter(isVerified)
+        .map((acc) => ({
+          ...acc,
+          evidenceId: acc.evidenceId || acc.id || null
+        }))
+    }));
+
+  const verifiedSummaries = (Array.isArray(profile?.summaryVariants) ? profile.summaryVariants : []).filter(isVerified);
+  const summary =
+    verifiedSummaries[0]?.text ||
+    verifiedSummaries[0]?.summary ||
+    (typeof profile?.headline === 'string' ? profile.headline : '') ||
+    (verifiedRoles[0]?.title ? `${verifiedRoles[0].title} grounded in verified experience.` : 'Grounded candidate profile.');
 
   return {
-    title: 'Resume draft',
-    generatedAt: new Date().toISOString(),
-    profileName: profile?.name || '',
-    contact: profile?.contact || {},
-    summary: summaryVariant,
-    summaryEvidence:
-      (profile?.summaryVariants || []).find((item) => item.text === summaryVariant)?.source ||
-      'Master profile summary',
-    roles: groupByRole(accomplishments),
-    skills: (profile?.skills || [])
-      .filter((skill) => skill.verificationStatus === 'verified')
-      .map((skill) => skill.name),
-    education: (profile?.education || []).filter((item) => item.verificationStatus === 'verified'),
-    certifications: (profile?.certifications || []).filter(
-      (item) => item.verificationStatus === 'verified'
-    ),
-    mapping,
-    disclaimer:
-      'Draft generated exclusively from verified profile content. Confirm accuracy and relevance before use.'
+    contact: profile?.contact || null,
+    headline: summary,
+    summary,
+    roles: verifiedRoles,
+    skills: verifiedSkills,
+    tools: verifiedTools,
+    certifications: (Array.isArray(profile?.certifications) ? profile.certifications : []).filter(isVerified),
+    education: (Array.isArray(profile?.education) ? profile.education : []).filter(isVerified),
+    projects: (Array.isArray(profile?.projects) ? profile.projects : []).filter(isVerified),
+    mapping: mapped,
+    provenancePolicy: 'strict-verified-only',
+    jobDescription: jdText
   };
 }
 
 export function toPlainText(draft) {
-  const contact = draft?.contact || {};
-  const lines = [
-    draft?.profileName || '',
-    [contact.email, contact.phone, contact.location, contact.linkedin].filter(Boolean).join(' | '),
-    '',
-    'PROFESSIONAL SUMMARY',
-    draft?.summary || '',
-    '',
-    'EXPERIENCE'
-  ];
-  for (const role of draft?.roles || []) {
-    lines.push(`${role.title} — ${role.company} | ${role.startDate}–${role.endDate}`);
-    for (const item of role.accomplishments || []) {
-      lines.push(`• ${item.text}`);
-    }
-    lines.push('');
-  }
-  lines.push('SKILLS', (draft?.skills || []).join(' • '), '');
-  if (draft?.certifications?.length) {
-    lines.push('CERTIFICATIONS');
-    for (const item of draft.certifications) {
-      lines.push(`${item.name}${item.issuer ? ` — ${item.issuer}` : ''}`);
-    }
-    lines.push('');
-  }
-  if (draft?.education?.length) {
-    lines.push('EDUCATION');
-    for (const item of draft.education) {
-      lines.push(`${item.degree} — ${item.institution}${item.year ? `, ${item.year}` : ''}`);
+  if (!draft) return '';
+  if (typeof draft === 'string') return draft;
+  const parts = [];
+  if (draft.contact?.name) parts.push(String(draft.contact.name));
+  if (draft.summary) parts.push(String(draft.summary));
+  for (const role of Array.isArray(draft.roles) ? draft.roles : []) {
+    if (role.title) parts.push([role.title, role.company, role.period].filter(Boolean).join(' - '));
+    for (const acc of Array.isArray(role.accomplishments) ? role.accomplishments : []) {
+      const text = typeof acc === 'string' ? acc : acc?.text || acc?.statement || '';
+      if (text) parts.push(text);
     }
   }
-  return `${lines.filter((line) => line !== undefined).join('\n').trim()}\n`;
+  for (const sk of Array.isArray(draft.skills) ? draft.skills : []) {
+    const label = typeof sk === 'string' ? sk : sk?.name || sk?.label || '';
+    if (label) parts.push(label);
+  }
+  return parts.join('\n').trim();
 }
+
+export { buildTailoredDraft };
+export default { buildTailoredResume, buildTailoredDraft, toPlainText };

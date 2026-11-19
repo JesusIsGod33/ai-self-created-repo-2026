@@ -1,3 +1,53 @@
-import { runAtsChecks } from '../ats/index.js';
-const provenance=items=>(items||[]).filter(item=>item.verificationStatus==='verified'&&item.id&&item.source).map(({id,source,verificationStatus})=>({id,source,verificationStatus}));
-export function toAuditReport(profile,draft,analysis) { return JSON.stringify({generatedAt:new Date().toISOString(),groundedOnly:true,provenancePolicy:'verified-only',requirements:analysis.requirements.map(item=>({requirement:item.requirement,matched:item.matched,evidence:item.evidence.filter(record=>record.verificationStatus==='verified')})),ats:runAtsChecks(profile,draft,analysis),includedEvidence:[...(draft.roles||[]),...(draft.roles||[]).flatMap(role=>role.accomplishments||[]),...(draft.skills||[]),...(draft.tools||[]),...(draft.metrics||[]),...(draft.projects||[])].flatMap(record=>provenance([record]))},null,2); }
+export function exportAuditReport(payload = {}) {
+  const profile = payload.profile || {};
+  const verifiedRecords = [];
+  const excludedRecords = [];
+
+  const scanList = (items = [], section) => {
+    for (const item of Array.isArray(items) ? items : []) {
+      if (!item || typeof item !== 'object') continue;
+      const status = item.verificationStatus || 'verified';
+      const entry = {
+        id: item.id || null,
+        section,
+        source: item.source || null,
+        verificationStatus: status
+      };
+      if (status === 'verified') {
+        verifiedRecords.push(entry);
+      } else {
+        excludedRecords.push(entry);
+      }
+    }
+  };
+
+  scanList(profile.roles, 'roles');
+  scanList(profile.skills, 'skills');
+  scanList(profile.tools, 'tools');
+  scanList(profile.certifications, 'certifications');
+  scanList(profile.education, 'education');
+  scanList(profile.projects, 'projects');
+  scanList(profile.summaryVariants, 'summaryVariants');
+
+  for (const role of Array.isArray(profile.roles) ? profile.roles : []) {
+    scanList(role.accomplishments, `role:${role.id || role.title || 'unknown'}:accomplishments`);
+    for (const acc of Array.isArray(role.accomplishments) ? role.accomplishments : []) {
+      scanList(acc.metrics, `accomplishment:${acc.id || 'unknown'}:metrics`);
+    }
+  }
+
+  return {
+    generatedAt: new Date().toISOString(),
+    provenanceLock: 'strict-verified-only',
+    summary: {
+      verifiedCount: verifiedRecords.length,
+      excludedCount: excludedRecords.length,
+      hasDraft: Boolean(payload.draft),
+      hasAnalysis: Boolean(payload.analysis)
+    },
+    verifiedRecords,
+    excludedRecords
+  };
+}
+
+export default exportAuditReport;

@@ -1,2 +1,37 @@
-export function renderDraft(draft) { return `<section class="card"><h3>Tailored draft</h3>${draft.summary ? `<p>${escapeHtml(draft.summary.text)}</p>` : ''}${draft.roles.map(role => `<h3>${escapeHtml(role.title)} — ${escapeHtml(role.employer)}</h3><ul class="bullet">${role.accomplishments.map(item => `<li>${escapeHtml(item.text)}</li>`).join('')}</ul>`).join('')}<p><strong>Skills:</strong> ${draft.skills.map(item => escapeHtml(item.name)).join(', ') || 'None'}</p><p><strong>Tools:</strong> ${draft.tools.map(item => escapeHtml(item.name)).join(', ') || 'None'}</p><p class="tag">Verified records only</p></section>`; }
-function escapeHtml(value) { return String(value ?? '').replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char]); }
+function esc(val) {
+  return String(val ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+}
+
+export function renderDraft(draft) {
+  if (!draft || typeof draft !== 'object') {
+    return '<p>No draft available.</p>';
+  }
+  const summary = draft.summary || draft.headline || '';
+  const roles = Array.isArray(draft.roles) ? draft.roles : [];
+
+  return `
+    <div>
+      <p><strong>Summary:</strong> ${esc(summary)}</p>
+      ${roles
+        .map((role) => {
+          const bullets = Array.isArray(role.accomplishments) ? role.accomplishments : [];
+          return `
+            <div style="margin-top:0.75rem;">
+              <strong>${esc(role.title || 'Role')}</strong>${role.company ? ` — ${esc(role.company)}` : ''}
+              <ul class="item-list">
+                ${bullets
+                  .map((b) => `<li>${esc(typeof b === 'string' ? b : b?.text || b?.statement || '')}</li>`)
+                  .join('')}
+              </ul>
+            </div>
+          `;
+        })
+        .join('')}
+    </div>
+  `;
+}
+
+export default renderDraft;

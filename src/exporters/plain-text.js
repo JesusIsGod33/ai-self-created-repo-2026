@@ -1,2 +1,62 @@
-const verified=items=>(items||[]).filter(item=>item.verificationStatus==='verified'&&item.id&&item.source);
-export function toPlainText(profile,draft) { const lines=[draft.contact.name,[draft.contact.email,draft.contact.phone,draft.contact.location,draft.contact.website].filter(Boolean).join(' | ')];if(draft.summary?.verificationStatus==='verified')lines.push('','SUMMARY',draft.summary.text);const skills=verified(draft.skills),tools=verified(draft.tools);if(skills.length)lines.push('','SKILLS',skills.map(item=>item.name).join(' • '));if(tools.length)lines.push('','TOOLS',tools.map(item=>item.name).join(', '));for(const role of verified(draft.roles)){lines.push('',`${role.title} — ${role.employer}${role.startDate?` | ${role.startDate}–${role.endDate||'Present'}`:''}`);for(const item of verified(role.accomplishments))lines.push(`• ${item.text}`);}const education=verified(draft.education);if(education.length)lines.push('','EDUCATION',...education.map(item=>`${item.degree||''} ${item.field||''} — ${item.institution}`.trim()));const certs=verified(draft.certifications);if(certs.length)lines.push('','CERTIFICATIONS',...certs.map(item=>item.name));return`${lines.join('\n')}\n`; }
+export function exportPlainText(payload = {}) {
+  const profile = payload.profile || {};
+  const draft = payload.draft || {};
+  const contact = draft.contact || profile.contact || {};
+  const lines = [];
+
+  if (contact.name) lines.push(String(contact.name).toUpperCase());
+  const contactMeta = [contact.email, contact.phone, contact.location].filter(Boolean).join(' | ');
+  if (contactMeta) lines.push(contactMeta);
+  if (lines.length > 0) lines.push('');
+
+  const summary = draft.summary || draft.headline || profile.headline || '';
+  if (summary) {
+    lines.push('SUMMARY');
+    lines.push(String(summary));
+    lines.push('');
+  }
+
+  const roles = Array.isArray(draft.roles) && draft.roles.length > 0
+    ? draft.roles
+    : Array.isArray(profile.roles)
+      ? profile.roles.filter((r) => r && r.verificationStatus === 'verified')
+      : [];
+
+  if (roles.length > 0) {
+    lines.push('EXPERIENCE');
+    for (const role of roles) {
+      const header = [role.title, role.company, role.period || role.dates].filter(Boolean).join(' — ');
+      if (header) lines.push(header);
+      const bullets = Array.isArray(role.accomplishments)
+        ? role.accomplishments.filter((a) => !a.verificationStatus || a.verificationStatus === 'verified')
+        : [];
+      for (const b of bullets) {
+        const text = typeof b === 'string' ? b : b.text || b.statement || b.description || '';
+        const ref = typeof b === 'object' && b.source ? ` [${b.source}]` : '';
+        if (text) lines.push(`- ${text}${ref}`);
+      }
+      lines.push('');
+    }
+  }
+
+  const verifiedSkills = Array.isArray(draft.skills)
+    ? draft.skills.filter((s) => !s.verificationStatus || s.verificationStatus === 'verified')
+    : Array.isArray(profile.skills)
+      ? profile.skills.filter((s) => s && s.verificationStatus === 'verified')
+      : [];
+
+  if (verifiedSkills.length > 0) {
+    lines.push('VERIFIED SKILLS');
+    lines.push(
+      verifiedSkills
+        .map((s) => (typeof s === 'string' ? s : s.name || s.label || ''))
+        .filter(Boolean)
+        .join(', ')
+    );
+    lines.push('');
+  }
+
+  return lines.join('\n').trim();
+}
+
+export default exportPlainText;
