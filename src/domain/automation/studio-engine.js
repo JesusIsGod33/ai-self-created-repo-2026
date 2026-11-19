@@ -1,3 +1,8 @@
+import fs from 'node:fs';
+import path from 'node:path';
+
+const DEFAULT_CATALOG_PATH = path.resolve('data/generated-skills-catalog.json');
+
 function isVerified(item) {
   return Boolean(item && typeof item === 'object' && item.verificationStatus === 'verified');
 }
@@ -14,11 +19,26 @@ function tokenize(text) {
     .filter((t) => t.length >= 2);
 }
 
-export function buildSkillGraph(profile = {}, jobDescription = '') {
+export function loadVerifiedCatalog(catalogPath = DEFAULT_CATALOG_PATH) {
+  if (!fs.existsSync(catalogPath)) {
+    return { totalEntries: 0, verifiedCount: 0, entries: [] };
+  }
+  const raw = JSON.parse(fs.readFileSync(catalogPath, 'utf8'));
+  const entries = safeArray(raw.entries);
+  const verifiedEntries = entries.filter(isVerified);
+  return {
+    totalEntries: entries.length,
+    verifiedCount: verifiedEntries.length,
+    entries: verifiedEntries
+  };
+}
+
+export function buildSkillGraph(profile = {}, jobDescription = '', catalogPath = DEFAULT_CATALOG_PATH) {
   const skills = safeArray(profile.skills).filter(isVerified);
   const tools = safeArray(profile.tools).filter(isVerified);
   const certs = safeArray(profile.certifications).filter(isVerified);
   const roles = safeArray(profile.roles).filter(isVerified);
+  const catalog = loadVerifiedCatalog(catalogPath);
 
   const verifiedTokens = new Set();
   for (const s of skills) tokenize(s.name || s.label || s.text).forEach((t) => verifiedTokens.add(t));
@@ -29,6 +49,10 @@ export function buildSkillGraph(profile = {}, jobDescription = '') {
     for (const acc of safeArray(r.accomplishments).filter(isVerified)) {
       tokenize(acc.text || acc.statement).forEach((tok) => verifiedTokens.add(tok));
     }
+  }
+  for (const item of catalog.entries) {
+    tokenize(item.domainLabel).forEach((tok) => verifiedTokens.add(tok));
+    tokenize(item.capabilityName).forEach((tok) => verifiedTokens.add(tok));
   }
 
   const jdTokens = [...new Set(tokenize(jobDescription))].filter(
@@ -48,6 +72,7 @@ export function buildSkillGraph(profile = {}, jobDescription = '') {
     tools: tools.map((t) => t.name || t.label || t.text).filter(Boolean),
     certifications: certs.map((c) => c.name || c.title).filter(Boolean),
     verifiedRoleCount: roles.length,
+    verifiedCatalogCount: catalog.verifiedCount,
     matchedKeywords,
     gapKeywords,
     readinessScore: jdTokens.length
@@ -76,27 +101,46 @@ export function generateCoverLetter({ profile = {}, jobDescription = '', tone = 
 
   const greeting =
     tone === 'conversational'
-      ? `Hi ${company} Hiring Team,`
-      : `Dear ${company} Hiring Committee,`;
+      ? 'Hi ' + company + ' Hiring Team,'
+      : 'Dear ' + company + ' Hiring Committee,';
 
   const opening =
     tone === 'conversational'
-      ? `I'm excited to share how my verified background in ${skills.slice(0, 3).join(', ') || 'operations and delivery'} aligns with what ${company} is building around ${focusLine}.`
-      : `I am writing to express strong interest in contributing to ${company}, bringing provenance-verified experience across ${skills.slice(0, 3).join(', ') || 'core domain operations'} and alignment with ${focusLine}.`;
+      ? "I'm excited to share how my verified background in " +
+        (skills.slice(0, 3).join(', ') || 'operations and delivery') +
+        ' aligns with what ' +
+        company +
+        ' is building around ' +
+        focusLine +
+        '.'
+      : 'I am writing to express strong interest in contributing to ' +
+        company +
+        ', bringing provenance-verified experience across ' +
+        (skills.slice(0, 3).join(', ') || 'core domain operations') +
+        ' and alignment with ' +
+        focusLine +
+        '.';
 
   const proofParagraph = topRole
-    ? `Most recently as ${topRole.title}${topRole.company ? ` at ${topRole.company}` : ''}, I focused on verifiable outcomes${topBullet ? `—including: "${topBullet}"` : '.'}`
-    : `Every highlight in my application is tied directly to verified records rather than unsubstantiated claims.`;
+    ? 'Most recently as ' +
+      topRole.title +
+      (topRole.company ? ' at ' + topRole.company : '') +
+      ', I focused on verifiable outcomes' +
+      (topBullet ? ' - including: "' + topBullet + '"' : '.')
+    : 'Every highlight in my application is tied directly to verified records rather than unsubstantiated claims.';
 
   const closing =
     tone === 'conversational'
-      ? `Would love to walk through how I can help ${company} hit its goals. Best,\n${candidateName}`
-      : `Thank you for your time and consideration. I welcome the opportunity to discuss how my verified experience supports ${company}.\n\nSincerely,\n${candidateName}`;
+      ? 'Would love to walk through how I can help ' + company + ' hit its goals. Best,\n' + candidateName
+      : 'Thank you for your time and consideration. I welcome the opportunity to discuss how my verified experience supports ' +
+        company +
+        '.\n\nSincerely,\n' +
+        candidateName;
 
   return {
     tone,
     company,
-    letter: `${greeting}\n\n${opening}\n\n${proofParagraph}\n\n${closing}`
+    letter: greeting + '\n\n' + opening + '\n\n' + proofParagraph + '\n\n' + closing
   };
 }
 
@@ -107,7 +151,7 @@ export function buildInterviewAndCompPlan({ profile = {}, jobDescription = '', r
       .filter(isVerified)
       .map((b) => ({
         role: r.title || 'Verified Role',
-        prompt: `Walk through "${b.text || b.statement}" using STAR (Situation, Task, Action, Result) without adding unverified metrics.`,
+        prompt: 'Walk through "' + (b.text || b.statement) + '" using STAR (Situation, Task, Action, Result) without adding unverified metrics.',
         evidenceId: b.id || b.evidenceId || 'verified-record'
       }))
   );
@@ -124,7 +168,14 @@ export function buildInterviewAndCompPlan({ profile = {}, jobDescription = '', r
       baselineTarget: baseComp,
       counterOfferAnchor: anchorHigh,
       floorThreshold: walkAwayFloor,
-      negotiationScript: `Based on the scope of ${roleTitle} in ${location} and the verified operational impact I bring, I am targeting $${anchorHigh.toLocaleString()} in base compensation, with flexibility around total rewards and performance milestones.`
+      negotiationScript:
+        'Based on the scope of ' +
+        roleTitle +
+        ' in ' +
+        location +
+        ' and the verified operational impact I bring, I am targeting $' +
+        anchorHigh.toLocaleString() +
+        ' in base compensation, with flexibility around total rewards and performance milestones.'
     },
     jdSignals: [...new Set(tokenize(jobDescription))].slice(0, 10)
   };

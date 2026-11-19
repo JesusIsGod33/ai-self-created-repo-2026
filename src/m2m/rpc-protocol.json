@@ -1,0 +1,53 @@
+{
+  "jsonrpc": "2.0",
+  "protocol": "m2m-career-engine/1.0",
+  "referenceModel": "https://jobright.ai",
+  "security": {
+    "transport": "mTLS",
+    "piiVaultTokenization": true,
+    "schemaContract": "OpenAPI-3.1-and-Protobuf-v3"
+  },
+  "handshake": {
+    "id": "hs-001",
+    "method": "m2m.negotiateSchema",
+    "params": {
+      "senderNodeId": "node-orchestrator-01",
+      "receiverNodeId": "node-worker-mesh-01",
+      "supportedSchemas": [
+        "CandidateProfileBundle.v1",
+        "JobOpportunityNormalized.v1",
+        "TailoredResumeDraft.v1",
+        "AtsAutofillPlan.v1",
+        "PipelineEventEnvelope.v1"
+      ],
+      "eventBus": {
+        "broker": "kafka",
+        "topics": [
+          "m2m.ingestion.raw",
+          "m2m.skillgraph.updated",
+          "m2m.jobs.discovered",
+          "m2m.resume.tailored",
+          "m2m.applications.queued",
+          "m2m.telemetry.feedback"
+        ]
+      }
+    }
+  },
+  "sampleInvocation": {
+    "jsonrpc": "2.0",
+    "id": "req-100-01",
+    "method": "m2m.invokeTool",
+    "params": {
+      "toolId": 29,
+      "toolName": "verify_url_mirror_health",
+      "domain": "C-JOB-DISCOVERY-SCRAPING-MESH",
+      "vaultTokenRef": "tok_pii_98f21a",
+      "groundedOnly": true,
+      "payload": {
+        "targetUrl": "https://jobright.ai/",
+        "normalizeTrailingSlash": true,
+        "acceptedStatuses": [200, 301]
+      }
+    }
+  }
+}
