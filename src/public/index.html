@@ -3,61 +3,147 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Grounded Career Studio — Advanced Resume Workbench</title>
+    <title>Grounded Career Studio — Full Career Automation Command Center</title>
     <link rel="stylesheet" href="/styles.css" />
   </head>
   <body>
     <header class="topbar">
       <div>
         <h1>Grounded Career Studio</h1>
-        <p class="subtitle">Provenance-Locked Resume Analysis, Tailoring &amp; Export</p>
+        <p class="subtitle">Provenance-Locked Resume Tailoring, ATS Audit, Pipeline CRM, Cover Letters &amp; Interview/Comp Lab</p>
       </div>
       <div class="meta-bar">
         <span id="verified-count" class="badge">0 verified skills</span>
+        <span id="readiness-badge" class="badge">Match: --%</span>
         <span id="status" class="status-pill" role="status">Ready.</span>
       </div>
     </header>
 
+    <nav class="tabs" aria-label="Studio Sections">
+      <button type="button" class="tab-btn active" data-tab="workbench">Resume &amp; JD Workbench</button>
+      <button type="button" class="tab-btn" data-tab="ingest">Ingest &amp; Skill Graph</button>
+      <button type="button" class="tab-btn" data-tab="cover-letter">Cover Letter Studio</button>
+      <button type="button" class="tab-btn" data-tab="pipeline">Job Tracker &amp; Screening</button>
+      <button type="button" class="tab-btn" data-tab="interview-comp">STAR Prep &amp; Comp</button>
+    </nav>
+
     <main class="workspace">
-      <section class="panel">
-        <h2>Verified Profile</h2>
-        <div id="profile-content" class="card-body">Loading verified profile…</div>
-      </section>
+      <section id="tab-workbench" class="tab-panel active">
+        <div class="grid-2">
+          <div class="panel">
+            <h2>Verified Profile &amp; Grounded Evidence</h2>
+            <div id="profile-content" class="card-body">Loading verified profile…</div>
+          </div>
 
-      <section class="panel">
-        <h2>Job Description &amp; Tailoring Controls</h2>
-        <label for="job-description" class="sr-only">Job Description</label>
-        <textarea
-          id="job-description"
-          rows="8"
-          placeholder="Paste a target job description here to analyze requirement alignment, build a verified draft, and run ATS checks…"
-        ></textarea>
-
-        <div class="controls">
-          <button id="analyze-btn" type="button">Analyze Alignment</button>
-          <button id="tailor-btn" type="button" class="primary">Build Tailored Draft</button>
-          <select id="export-format" aria-label="Export format">
-            <option value="markdown">Markdown (.md)</option>
-            <option value="text">Plain Text (.txt)</option>
-            <option value="json">JSON Bundle (.json)</option>
-            <option value="audit">Provenance Audit (.json)</option>
-          </select>
-          <button id="export-btn" type="button">Export Artifact</button>
+          <div class="panel">
+            <h2>Job Description &amp; Tailoring Controls</h2>
+            <label for="job-description" class="sr-only">Job Description</label>
+            <textarea
+              id="job-description"
+              rows="7"
+              placeholder="Paste a full job description here to map verified evidence, build a provenance-locked resume draft, and audit ATS readiness…"
+            ></textarea>
+            <div class="controls">
+              <button id="analyze-btn" type="button">Analyze Alignment</button>
+              <button id="tailor-btn" type="button" class="primary">Build Tailored Draft</button>
+              <select id="export-format" aria-label="Export format">
+                <option value="markdown">Markdown (.md)</option>
+                <option value="text">Plain Text (.txt)</option>
+                <option value="json">JSON Bundle (.json)</option>
+                <option value="audit">Provenance Audit (.json)</option>
+              </select>
+              <button id="export-btn" type="button">Export Artifact</button>
+            </div>
+            <h3>Requirement Alignment</h3>
+            <div id="alignment-output" class="card-body">No analysis run yet.</div>
+          </div>
         </div>
 
-        <h3>Requirement Alignment</h3>
-        <div id="alignment-output" class="card-body">No analysis run yet.</div>
-      </section>
-
-      <section class="panel wide">
-        <div class="split-grid">
-          <div>
-            <h2>Tailored Draft</h2>
+        <div class="grid-2" style="margin-top:1.25rem;">
+          <div class="panel">
+            <h2>Tailored Draft &amp; Export Output</h2>
             <div id="draft-output" class="card-body">No draft generated yet.</div>
           </div>
-          <div>
-            <h2>ATS &amp; Provenance Audit</h2>
+          <div class="panel">
+            <h2>ATS &amp; Provenance Lock Audit</h2>
             <div id="ats-output" class="card-body">No ATS evaluation run yet.</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="tab-ingest" class="tab-panel">
+        <div class="grid-2">
+          <div class="panel">
+            <h2>Multi-Source Career Note &amp; Metric Extractor</h2>
+            <p class="subtitle">Paste raw notes, project logs, or interview answers to structure into candidate evidence items (marked unverified until explicitly promoted).</p>
+            <textarea id="raw-evidence-input" rows="6" placeholder="Example: Led cross-functional rollout cutting turnaround time by 25% using SQL reporting and stakeholder reviews..."></textarea>
+            <div class="controls">
+              <button id="parse-evidence-btn" type="button" class="primary">Structure Career Evidence</button>
+            </div>
+            <div id="parsed-evidence-output" class="card-body">No raw notes parsed yet.</div>
+          </div>
+
+          <div class="panel">
+            <h2>Live Skill Graph &amp; Gap Matrix</h2>
+            <div id="skill-graph-output" class="card-body">Run or load profile to view skill graph.</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="tab-cover-letter" class="tab-panel">
+        <div class="panel">
+          <h2>Hyper-Personalized Cover Letter Generator</h2>
+          <div class="controls">
+            <input id="company-input" type="text" placeholder="Company name (e.g., Acme Ops)" />
+            <select id="tone-select" aria-label="Cover letter tone">
+              <option value="executive">Executive</option>
+              <option value="conversational">Conversational</option>
+            </select>
+            <button id="generate-letter-btn" type="button" class="primary">Generate Grounded Cover Letter</button>
+          </div>
+          <div id="cover-letter-output" class="card-body">Enter a company name and job description, then generate a grounded cover letter.</div>
+        </div>
+      </section>
+
+      <section id="tab-pipeline" class="tab-panel">
+        <div class="grid-2">
+          <div class="panel">
+            <h2>Application Pipeline &amp; Match Queue</h2>
+            <div class="controls">
+              <input id="job-title-input" type="text" placeholder="Role title" />
+              <input id="job-company-input" type="text" placeholder="Company" />
+              <button id="add-job-btn" type="button" class="primary">Add Scored Role</button>
+            </div>
+            <div id="pipeline-list" class="card-body">No tracked roles yet.</div>
+          </div>
+
+          <div class="panel">
+            <h2>RAG Screening Question Drafter</h2>
+            <textarea id="screening-question-input" rows="4" placeholder="Paste an application question (e.g., Describe how you resolve cross-team bottlenecks)..."></textarea>
+            <div class="controls">
+              <button id="answer-screening-btn" type="button" class="primary">Draft Grounded Answer</button>
+            </div>
+            <div id="screening-answer-output" class="card-body">No screening answer drafted yet.</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="tab-interview-comp" class="tab-panel">
+        <div class="grid-2">
+          <div class="panel">
+            <h2>STAR Interview Prompts From Verified Accomplishments</h2>
+            <div id="star-prompts-output" class="card-body">Load profile to generate STAR prompts.</div>
+          </div>
+
+          <div class="panel">
+            <h2>Compensation Benchmarking &amp; Counter-Offer Script</h2>
+            <div class="controls">
+              <input id="comp-role-input" type="text" value="Operations & Product Lead" />
+              <input id="comp-location-input" type="text" value="Remote / US" />
+              <input id="comp-target-input" type="number" value="95000" step="1000" />
+              <button id="calc-comp-btn" type="button" class="primary">Calculate Anchors</button>
+            </div>
+            <div id="comp-output" class="card-body">Set target compensation to generate counter-offer anchors.</div>
           </div>
         </div>
       </section>
