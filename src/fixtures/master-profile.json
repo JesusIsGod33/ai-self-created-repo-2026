@@ -1,0 +1,155 @@
+{
+  "name": "Jordan Taylor",
+  "contact": {
+    "email": "jordan.taylor@example.test",
+    "phone": "555-0100",
+    "location": "Portland, OR",
+    "linkedin": "linkedin.com/in/jordan-taylor-demo"
+  },
+  "summary": "Operations analyst with experience improving reporting workflows and coordinating cross-functional projects.",
+  "summaryVariants": [
+    {
+      "id": "sum-ops-1",
+      "text": "Operations analyst with experience improving reporting workflows and coordinating cross-functional projects.",
+      "source": "Sample profile: summary statement",
+      "verificationStatus": "verified"
+    },
+    {
+      "id": "sum-analytics-1",
+      "text": "Analyst focused on dashboard reporting, SQL data validation, and practical process improvement.",
+      "source": "Sample profile: summary statement",
+      "verificationStatus": "verified"
+    }
+  ],
+  "roles": [
+    {
+      "id": "role-1",
+      "title": "Operations Analyst",
+      "company": "Northstar Demo Services",
+      "startDate": "2022",
+      "endDate": "Present",
+      "skills": ["SQL", "Tableau", "process improvement"],
+      "accomplishments": [
+        {
+          "id": "fact-1",
+          "text": "Automated recurring SQL reports, reducing weekly preparation time by 30%.",
+          "skills": ["SQL", "automation", "reporting"],
+          "metrics": [
+            {
+              "value": "30%",
+              "context": "reduction in weekly report preparation time"
+            }
+          ],
+          "source": "sample://jordan/role-1/accomplishment-1",
+          "verificationStatus": "verified"
+        },
+        {
+          "id": "fact-2",
+          "text": "Built Tableau dashboards used by 4 teams to monitor service-level trends.",
+          "skills": ["Tableau", "dashboards", "analytics"],
+          "metrics": [
+            {
+              "value": "4 teams",
+              "context": "dashboard users"
+            }
+          ],
+          "source": "sample://jordan/role-1/accomplishment-2",
+          "verificationStatus": "verified"
+        },
+        {
+          "id": "fact-3",
+          "text": "Coordinated a cross-functional workflow review and documented process recommendations.",
+          "skills": ["communication", "project management", "process improvement"],
+          "metrics": [],
+          "source": "sample://jordan/role-1/accomplishment-3",
+          "verificationStatus": "verified"
+        }
+      ]
+    },
+    {
+      "id": "role-2",
+      "title": "Business Operations Coordinator",
+      "company": "Cedar Lane Demo Group",
+      "startDate": "2019",
+      "endDate": "2022",
+      "skills": ["Excel", "project coordination", "communication"],
+      "accomplishments": [
+        {
+          "id": "fact-4",
+          "text": "Maintained Excel trackers and prepared monthly operating summaries for leadership.",
+          "skills": ["Excel", "reporting", "communication"],
+          "metrics": [],
+          "source": "sample://jordan/role-2/accomplishment-1",
+          "verificationStatus": "verified"
+        }
+      ]
+    }
+  ],
+  "skills": [
+    {
+      "id": "skill-sql",
+      "name": "SQL",
+      "source": "sample://jordan/skills/sql",
+      "verificationStatus": "verified"
+    },
+    {
+      "id": "skill-tableau",
+      "name": "Tableau",
+      "source": "sample://jordan/skills/tableau",
+      "verificationStatus": "verified"
+    },
+    {
+      "id": "skill-excel",
+      "name": "Excel",
+      "source": "sample://jordan/skills/excel",
+      "verificationStatus": "verified"
+    },
+    {
+      "id": "skill-communication",
+      "name": "Communication",
+      "source": "sample://jordan/skills/communication",
+      "verificationStatus": "verified"
+    },
+    {
+      "id": "skill-pm",
+      "name": "Project coordination",
+      "source": "sample://jordan/skills/project-coordination",
+      "verificationStatus": "verified"
+    }
+  ],
+  "tools": [
+    {
+      "id": "tool-tableau",
+      "name": "Tableau",
+      "source": "sample://jordan/tools/tableau",
+      "verificationStatus": "verified"
+    },
+    {
+      "id": "tool-excel",
+      "name": "Excel",
+      "source": "sample://jordan/tools/excel",
+      "verificationStatus": "verified"
+    }
+  ],
+  "certifications": [],
+  "education": [
+    {
+      "id": "edu-1",
+      "degree": "B.S. Business Analytics",
+      "institution": "Example State University",
+      "year": "2019",
+      "source": "sample://jordan/education/degree",
+      "verificationStatus": "verified"
+    }
+  ],
+  "projects": [
+    {
+      "id": "project-1",
+      "name": "Service Metrics Review",
+      "description": "Analyzed recurring service data and shared a trends summary with operations stakeholders.",
+      "skills": ["analytics", "reporting"],
+      "source": "sample://jordan/projects/service-metrics",
+      "verificationStatus": "verified"
+    }
+  ]
+}

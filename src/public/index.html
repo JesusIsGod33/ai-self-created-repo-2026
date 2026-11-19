@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Grounded Career Studio</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <h1>Grounded Career Studio</h1>
+        <p class="subtitle">Provenance-first profile alignment and ATS-ready resume drafting</p>
+      </div>
+    </header>
+
+    <main class="workspace">
+      <section class="panel" id="profile-panel" aria-labelledby="profile-heading">
+        <h2 id="profile-heading">Verified Master Profile</h2>
+        <div id="profile-content" class="stack"></div>
+      </section>
+
+      <section class="panel" id="alignment-panel" aria-labelledby="alignment-heading">
+        <h2 id="alignment-heading">Job Alignment &amp; Tailored Draft</h2>
+        <label for="job-description" class="field-label">Target Job Description</label>
+        <textarea
+          id="job-description"
+          rows="8"
+          placeholder="Paste a job description here to extract requirements and map verified evidence..."
+        ></textarea>
+        <div class="actions">
+          <button type="button" id="analyze-btn">Analyze Alignment</button>
+          <button type="button" id="tailor-btn">Build Tailored Draft</button>
+          <button type="button" id="export-btn">Export Plain Text</button>
+        </div>
+        <div id="alignment-output" class="stack"></div>
+        <div id="draft-output" class="stack"></div>
+        <div id="ats-output" class="stack"></div>
+      </section>
+    </main>
+
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>

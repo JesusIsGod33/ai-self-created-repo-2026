@@ -1,0 +1,30 @@
+{
+  "engine_id": "phase-locked-engine-01",
+  "paths": {
+    "base_dir": "/opt/phase-locked-orchestrator",
+    "repos_dir": "/opt/phase-locked-orchestrator/repos",
+    "venvs_dir": "/opt/phase-locked-orchestrator/venvs",
+    "state_dir": "/opt/phase-locked-orchestrator/state",
+    "ledger_file": "/opt/phase-locked-orchestrator/state/lifecycle_ledger.json",
+    "queue_db": "/opt/phase-locked-orchestrator/state/micro_tasks.db"
+  },
+  "repositories": [
+    {
+      "name": "infuselink-worker",
+      "url": "git@github.com:JesusIsGod33/InfuseLink.git",
+      "branch": "main",
+      "requirements": [],
+      "auth_url": "git@github.com:JesusIsGod33/InfuseLink.git"
+    }
+  ],
+  "concurrency": {
+    "max_workers": 6,
+    "semaphore_limit": 4,
+    "wave_size": 12,
+    "wave_timeout_seconds": 30.0,
+    "jitter_bounds": [
+      0.05,
+      0.35
+    ]
+  }
+}
