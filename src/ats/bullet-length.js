@@ -1,0 +1,1 @@
+export function checkBulletLength(draft) { const long = (draft.roles || []).flatMap(role => role.accomplishments.map(item => item.text)).filter(text => text.length > 240); return { name: 'bullet-length', passed: long.length === 0, issues: long.map(text => `Bullet exceeds 240 characters (${text.length})`) }; }

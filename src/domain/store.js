@@ -1,17 +1,8 @@
-import sampleProfile from '../fixtures/master-profile.json' with { type: 'json' };
+import { createMemoryAdapter } from './persistence/memory.js';
 import { validateProfile } from '../schemas/profile.js';
+import initialProfile from '../fixtures/master-profile.json' with { type: 'json' };
 
-let profile = structuredClone(sampleProfile);
-
-export function getProfile() {
-  return structuredClone(profile);
-}
-
-export function replaceProfile(next) {
-  const errors = validateProfile(next);
-  if (errors.length) {
-    throw new Error(errors.join(' '));
-  }
-  profile = structuredClone(next);
-  return getProfile();
-}
+const adapter = createMemoryAdapter(initialProfile);
+export function getProfile() { return adapter.get(); }
+export function replaceProfile(next) { const errors = validateProfile(next); if (errors.length) { const error = new Error(errors.join('; ')); error.name = 'ValidationError'; error.details = errors; throw error; } return adapter.replace(next); }
+export function setPersistence(nextAdapter) { if (!nextAdapter || typeof nextAdapter.get !== 'function' || typeof nextAdapter.replace !== 'function') throw new TypeError('Persistence adapter must implement get and replace'); return nextAdapter; }

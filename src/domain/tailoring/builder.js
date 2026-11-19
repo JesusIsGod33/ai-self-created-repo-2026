@@ -1,0 +1,4 @@
+import { rankRoles } from './ranker.js';
+import { groupRoles } from './role-grouper.js';
+import { selectSummary } from './summary-selector.js';
+export function buildTailoredDraft(profile, analysis) { const verified = item => item.verificationStatus === 'verified'; const ranked = rankRoles(profile.roles || [], analysis.requirements); const roles = groupRoles(ranked).map(role => ({ ...role, accomplishments: role.accomplishments.filter(verified).map(item => ({ id: item.id, source: item.source, verificationStatus: item.verificationStatus, text: item.text })) })).filter(role => role.accomplishments.length); return { contact: profile.contact, summary: selectSummary(profile, analysis.requirements), roles, skills: (profile.skills || []).filter(verified), tools: (profile.tools || []).filter(verified), education: (profile.education || []).filter(verified), certifications: (profile.certifications || []).filter(verified), groundedOnly: true }; }

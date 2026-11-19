@@ -1,0 +1,2 @@
+/* Layout is composed in base.css; this module keeps responsive structure independently editable. */
+.layout{align-items:start}.panel{min-width:0}

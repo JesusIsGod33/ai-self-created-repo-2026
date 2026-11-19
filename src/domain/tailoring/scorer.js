@@ -1,0 +1,1 @@
+export function scoreRole(role, requirements) { const text = (role.accomplishments || []).filter(item => item.verificationStatus === 'verified').map(item => item.text.toLowerCase()).join(' '); return requirements.reduce((score, item) => score + (item.matched && item.evidence.some(e => text.includes(e.text.toLowerCase())) ? 2 : 0), 0); }

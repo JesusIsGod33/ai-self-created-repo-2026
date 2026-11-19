@@ -1,0 +1,3 @@
+import { readFile, writeFile, mkdir, rename } from 'node:fs/promises';
+import { dirname } from 'node:path';
+export function createFileSnapshotAdapter(path) { let queue = Promise.resolve(); return { async get() { try { return JSON.parse(await readFile(path, 'utf8')); } catch (error) { if (error.code === 'ENOENT') return null; throw error; } }, async replace(value) { const snapshot = structuredClone(value); queue = queue.then(async () => { await mkdir(dirname(path), { recursive: true }); const temporary = `${path}.${process.pid}.tmp`; await writeFile(temporary, JSON.stringify(snapshot, null, 2), { mode: 0o600 }); await rename(temporary, path); }); await queue; return structuredClone(snapshot); } }; }

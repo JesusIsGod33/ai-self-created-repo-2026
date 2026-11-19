@@ -1,41 +1,19 @@
-const list = (v) => (Array.isArray(v) ? v : []);
-
-function validateFact(item, path, errors) {
-  if (!item || typeof item !== 'object') {
-    errors.push(`${path} must be an object.`);
-    return;
-  }
-  if (!item.id) errors.push(`${path} requires an id.`);
-  if (!item.source || typeof item.source !== 'string') {
-    errors.push(`${path} requires a source reference.`);
-  }
-  if (!['verified', 'unverified', 'needs_review'].includes(item.verificationStatus)) {
-    errors.push(`${path} has an invalid verificationStatus.`);
-  }
-}
-
+import { isText, validateArray } from './record.js';
+import { validateContact } from './contact.js';
+import { validateRole } from './role.js';
+import { validateAccomplishment } from './accomplishment.js';
+import { validateMetric } from './metric.js';
+import { validateSkill } from './skill.js';
+import { validateTool } from './tool.js';
+import { validateCertification } from './certification.js';
+import { validateEducation } from './education.js';
+import { validateProject } from './project.js';
+import { validateSummaryVariant } from './summary-variant.js';
 export function validateProfile(profile) {
+  if (!profile || typeof profile !== 'object') return ['profile must be an object'];
   const errors = [];
-  if (!profile || typeof profile !== 'object' || Array.isArray(profile)) {
-    return ['Profile must be an object.'];
-  }
-  if (typeof profile.name !== 'string' || !profile.name.trim()) {
-    errors.push('Name is required.');
-  }
-  for (const key of ['roles', 'skills', 'tools', 'certifications', 'education', 'projects', 'summaryVariants']) {
-    if (!Array.isArray(profile[key])) errors.push(`${key} must be an array.`);
-  }
-  for (const [i, role] of list(profile.roles).entries()) {
-    if (!role.title || !role.company) errors.push(`roles[${i}] requires title and company.`);
-    if (!Array.isArray(role.accomplishments)) errors.push(`roles[${i}].accomplishments must be an array.`);
-    for (const [j, item] of list(role.accomplishments).entries()) {
-      validateFact(item, `roles[${i}].accomplishments[${j}]`, errors);
-    }
-  }
-  for (const key of ['skills', 'tools', 'certifications', 'education', 'projects', 'summaryVariants']) {
-    for (const [i, item] of list(profile[key]).entries()) {
-      validateFact(item, `${key}[${i}]`, errors);
-    }
-  }
+  if (!profile.contact || typeof profile.contact !== 'object') errors.push('contact is required'); else errors.push(...validateContact(profile.contact));
+  for (const [field, validator] of Object.entries({ roles: validateRole, skills: validateSkill, tools: validateTool, certifications: validateCertification, education: validateEducation, projects: validateProject, summaryVariants: validateSummaryVariant, accomplishments: validateAccomplishment, metrics: validateMetric })) errors.push(...validateArray(profile[field] ?? [], field, validator));
+  if (!isText(profile.contact?.name)) errors.push('profile must have a contact name');
   return errors;
 }

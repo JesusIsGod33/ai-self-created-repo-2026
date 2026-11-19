@@ -1,0 +1,1 @@
+export function groupRoles(roles) { return roles.map(role => ({ employer: role.employer, title: role.title, startDate: role.startDate || null, endDate: role.endDate || null, accomplishments: role.accomplishments || [] })); }

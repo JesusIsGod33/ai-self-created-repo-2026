@@ -1,0 +1,2 @@
+export function renderAts(result) { return `<section class="card"><h3>ATS readiness: ${result.passed ? 'Checks passed' : 'Review recommended'}</h3>${result.checks.map(check => `<div class="check ${check.passed ? '' : 'fail'}"><strong>${escapeHtml(check.name)}</strong>: ${check.passed ? 'Pass' : check.issues.join('; ')}</div>`).join('')}</section>`; }
+function escapeHtml(value) { return String(value ?? '').replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char]); }

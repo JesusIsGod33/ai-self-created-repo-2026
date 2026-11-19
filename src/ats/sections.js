@@ -1,0 +1,1 @@
+export function checkSections(draft) { const required = ['roles', 'skills']; const missing = required.filter(key => !(draft[key] || []).length); return { name: 'sections', passed: missing.length === 0, issues: missing.map(key => `No ${key} section has grounded content`) }; }

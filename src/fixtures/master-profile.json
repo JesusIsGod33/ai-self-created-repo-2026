@@ -1,155 +1,33 @@
 {
-  "name": "Jordan Taylor",
-  "contact": {
-    "email": "jordan.taylor@example.test",
-    "phone": "555-0100",
-    "location": "Portland, OR",
-    "linkedin": "linkedin.com/in/jordan-taylor-demo"
-  },
-  "summary": "Operations analyst with experience improving reporting workflows and coordinating cross-functional projects.",
-  "summaryVariants": [
-    {
-      "id": "sum-ops-1",
-      "text": "Operations analyst with experience improving reporting workflows and coordinating cross-functional projects.",
-      "source": "Sample profile: summary statement",
-      "verificationStatus": "verified"
-    },
-    {
-      "id": "sum-analytics-1",
-      "text": "Analyst focused on dashboard reporting, SQL data validation, and practical process improvement.",
-      "source": "Sample profile: summary statement",
-      "verificationStatus": "verified"
-    }
-  ],
+  "contact": { "name": "Jordan Rivera", "email": "jordan.rivera@example.com", "phone": "555-0104", "location": "Portland, OR", "website": "https://example.com/jordan" },
   "roles": [
-    {
-      "id": "role-1",
-      "title": "Operations Analyst",
-      "company": "Northstar Demo Services",
-      "startDate": "2022",
-      "endDate": "Present",
-      "skills": ["SQL", "Tableau", "process improvement"],
-      "accomplishments": [
-        {
-          "id": "fact-1",
-          "text": "Automated recurring SQL reports, reducing weekly preparation time by 30%.",
-          "skills": ["SQL", "automation", "reporting"],
-          "metrics": [
-            {
-              "value": "30%",
-              "context": "reduction in weekly report preparation time"
-            }
-          ],
-          "source": "sample://jordan/role-1/accomplishment-1",
-          "verificationStatus": "verified"
-        },
-        {
-          "id": "fact-2",
-          "text": "Built Tableau dashboards used by 4 teams to monitor service-level trends.",
-          "skills": ["Tableau", "dashboards", "analytics"],
-          "metrics": [
-            {
-              "value": "4 teams",
-              "context": "dashboard users"
-            }
-          ],
-          "source": "sample://jordan/role-1/accomplishment-2",
-          "verificationStatus": "verified"
-        },
-        {
-          "id": "fact-3",
-          "text": "Coordinated a cross-functional workflow review and documented process recommendations.",
-          "skills": ["communication", "project management", "process improvement"],
-          "metrics": [],
-          "source": "sample://jordan/role-1/accomplishment-3",
-          "verificationStatus": "verified"
-        }
-      ]
-    },
-    {
-      "id": "role-2",
-      "title": "Business Operations Coordinator",
-      "company": "Cedar Lane Demo Group",
-      "startDate": "2019",
-      "endDate": "2022",
-      "skills": ["Excel", "project coordination", "communication"],
-      "accomplishments": [
-        {
-          "id": "fact-4",
-          "text": "Maintained Excel trackers and prepared monthly operating summaries for leadership.",
-          "skills": ["Excel", "reporting", "communication"],
-          "metrics": [],
-          "source": "sample://jordan/role-2/accomplishment-1",
-          "verificationStatus": "verified"
-        }
-      ]
-    }
+    { "title": "Senior Product Operations Manager", "employer": "Northstar Learning", "startDate": "2021", "endDate": "2025", "accomplishments": [
+      { "id": "acc-north-1", "source": "Jordan Rivera, verified career notes, 2025-01", "verificationStatus": "verified", "text": "Led cross-functional launch planning across product, support, and engineering teams." , "skills": ["project management", "communication"] },
+      { "id": "acc-north-2", "source": "Jordan Rivera, verified career notes, 2025-01", "verificationStatus": "verified", "text": "Built weekly SQL and spreadsheet reporting routines to help leaders review operational trends.", "skills": ["sql", "data analysis"] },
+      { "id": "acc-north-3", "source": "Jordan Rivera, verified career notes, 2025-01", "verificationStatus": "needs_review", "text": "Improved onboarding outcomes by 40 percent.", "skills": ["analytics"] }
+    ] },
+    { "title": "Program Coordinator", "employer": "Cedar Community Services", "startDate": "2018", "endDate": "2021", "accomplishments": [
+      { "id": "acc-cedar-1", "source": "Jordan Rivera, verified career notes, 2025-01", "verificationStatus": "verified", "text": "Coordinated service delivery schedules and clear communications for community programs.", "skills": ["communication", "project management"] },
+      { "id": "acc-cedar-2", "source": "Jordan Rivera, verified career notes, 2025-01", "verificationStatus": "unverified", "text": "Managed a 25-person volunteer program.", "skills": ["leadership"] }
+    ] }
   ],
+  "accomplishments": [],
+  "metrics": [],
   "skills": [
-    {
-      "id": "skill-sql",
-      "name": "SQL",
-      "source": "sample://jordan/skills/sql",
-      "verificationStatus": "verified"
-    },
-    {
-      "id": "skill-tableau",
-      "name": "Tableau",
-      "source": "sample://jordan/skills/tableau",
-      "verificationStatus": "verified"
-    },
-    {
-      "id": "skill-excel",
-      "name": "Excel",
-      "source": "sample://jordan/skills/excel",
-      "verificationStatus": "verified"
-    },
-    {
-      "id": "skill-communication",
-      "name": "Communication",
-      "source": "sample://jordan/skills/communication",
-      "verificationStatus": "verified"
-    },
-    {
-      "id": "skill-pm",
-      "name": "Project coordination",
-      "source": "sample://jordan/skills/project-coordination",
-      "verificationStatus": "verified"
-    }
+    { "id": "skill-project-management", "source": "Jordan Rivera, self-reported skills inventory, 2025-01", "verificationStatus": "verified", "name": "Project Management" },
+    { "id": "skill-sql", "source": "Work sample: reporting queries, 2024-12", "verificationStatus": "verified", "name": "SQL" },
+    { "id": "skill-communication", "source": "Manager reference, 2024-10", "verificationStatus": "verified", "name": "Communication" },
+    { "id": "skill-javascript", "source": "Jordan Rivera, self-reported skills inventory, 2025-01", "verificationStatus": "unverified", "name": "JavaScript" }
   ],
   "tools": [
-    {
-      "id": "tool-tableau",
-      "name": "Tableau",
-      "source": "sample://jordan/tools/tableau",
-      "verificationStatus": "verified"
-    },
-    {
-      "id": "tool-excel",
-      "name": "Excel",
-      "source": "sample://jordan/tools/excel",
-      "verificationStatus": "verified"
-    }
+    { "id": "tool-sheets", "source": "Northstar workflow documentation, 2024-06", "verificationStatus": "verified", "name": "Google Sheets" },
+    { "id": "tool-node", "source": "Jordan Rivera, self-reported skills inventory, 2025-01", "verificationStatus": "unverified", "name": "Node.js" }
   ],
-  "certifications": [],
-  "education": [
-    {
-      "id": "edu-1",
-      "degree": "B.S. Business Analytics",
-      "institution": "Example State University",
-      "year": "2019",
-      "source": "sample://jordan/education/degree",
-      "verificationStatus": "verified"
-    }
-  ],
-  "projects": [
-    {
-      "id": "project-1",
-      "name": "Service Metrics Review",
-      "description": "Analyzed recurring service data and shared a trends summary with operations stakeholders.",
-      "skills": ["analytics", "reporting"],
-      "source": "sample://jordan/projects/service-metrics",
-      "verificationStatus": "verified"
-    }
+  "certifications": [{ "id": "cert-pmp", "source": "Certificate record supplied by Jordan Rivera, 2023-08", "verificationStatus": "verified", "name": "Project Management Certificate", "issuer": "Regional Extension Institute", "date": "2023" }],
+  "education": [{ "id": "edu-state", "source": "Degree record supplied by Jordan Rivera, 2017-05", "verificationStatus": "verified", "institution": "State University", "degree": "Bachelor of Arts", "field": "Communication", "date": "2017" }],
+  "projects": [{ "id": "proj-dashboard", "source": "Northstar internal portfolio, 2024-04", "verificationStatus": "verified", "name": "Operations reporting dashboard", "description": "A recurring reporting workflow for operational trends." }],
+  "summaryVariants": [
+    { "id": "summary-ops", "source": "Jordan Rivera approved profile, 2025-01", "verificationStatus": "verified", "text": "Product operations leader experienced in cross-functional planning, program coordination, and operational reporting." },
+    { "id": "summary-unverified", "source": "Draft imported from an unverified document", "verificationStatus": "unverified", "text": "Award-winning executive who transformed a billion-dollar business." }
   ]
 }

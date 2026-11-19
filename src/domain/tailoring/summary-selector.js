@@ -1,0 +1,2 @@
+export function selectSummary(profile, requirements) { const verified = (profile.summaryVariants || []).filter(item => item.verificationStatus === 'verified'); const matched = requirements.filter(item => item.matched).map(item => item.requirement); return [...verified].sort((a, b) => overlap(b.text, matched) - overlap(a.text, matched))[0] || null; }
+function overlap(text, terms) { const lower = text.toLowerCase(); return terms.filter(term => lower.includes(term.toLowerCase())).length; }

@@ -1,0 +1,2 @@
+/* Small reusable visual primitives. */
+.card{transition:border-color .15s ease}.card:hover{border-color:#b9d8c4}.badge{white-space:nowrap}button:hover{filter:brightness(.96)}

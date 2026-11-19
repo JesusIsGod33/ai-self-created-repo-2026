@@ -1,0 +1,2 @@
+import { runAtsChecks } from '../ats/index.js';
+export function toAuditReport(profile, draft, analysis) { return JSON.stringify({ generatedAt: new Date().toISOString(), groundedOnly: true, requirements: analysis.requirements, ats: runAtsChecks(profile, draft, analysis), evidence: [...(draft.roles || []).flatMap(role => role.accomplishments), ...(draft.skills || []), ...(draft.tools || [])].map(({ id, source, verificationStatus }) => ({ id, source, verificationStatus })) }, null, 2); }
