@@ -149,3 +149,9 @@ export function mapRequirements(profile, requirements) {
     };
   });
 }
+
+export function analyze(profile, jobDescription) {
+  const requirements = extractRequirements(jobDescription);
+  const mapped = mapRequirements(profile, requirements);
+  return { requirements, mapped, mapping: mapped };
+}
