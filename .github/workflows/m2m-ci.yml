@@ -1,0 +1,23 @@
+name: M2M Orchestrator CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.14'
+      - name: Run Node test suites
+        run: node --test tests/mirror-url-iteration.test.js tests/site-reverse-matrix.test.js
+      - name: Verify 100 M2M tools
+        run: python3 -c "import sys; sys.path.insert(0, 'src/m2m'); import orchestrator_engine as oe; o = oe.M2MOrchestrator(); assert len(o.registry) == 100; r = o.invoke('verify_url_mirror_health', {'url': 'https://jobright.ai'}); assert r['result']['status'] == 'ok'; print('Verified 100 M2M tools')"
