@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>M2M Career &amp; Orchestration Command UI</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div id="app" class="app-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <span class="brand-badge">M2M</span>
+        <div>
+          <h1>Orchestrator UI</h1>
+          <p id="repo-status">100 Tools · 10 Domains</p>
+        </div>
+      </div>
+
+      <nav class="nav-group" aria-label="Primary Views">
+        <button type="button" class="nav-btn is-active" data-view="pipeline">Pipeline Matrix</button>
+        <button type="button" class="nav-btn" data-view="mirror">URL Mirror Lab</button>
+        <button type="button" class="nav-btn" data-view="rpc">JSON-RPC Console</button>
+        <button type="button" class="nav-btn" data-view="queue">Application Queue</button>
+      </nav>
+
+      <div class="sidebar-card">
+        <span class="eyebrow">Live Telemetry</span>
+        <div class="stat-row">
+          <span>Active Tasks</span>
+          <strong id="stat-active">0</strong>
+        </div>
+        <div class="stat-row">
+          <span>Completed Runs</span>
+          <strong id="stat-done">0</strong>
+        </div>
+        <div class="stat-row">
+          <span>Error Count</span>
+          <strong id="stat-errors">0</strong>
+        </div>
+        <button type="button" id="btn-reset-telemetry" class="btn btn-ghost full-width">Reset Counters</button>
+      </div>
+    </aside>
+
+    <main class="main-panel">
+      <header class="topbar">
+        <div>
+          <h2 id="view-title">Pipeline Matrix</h2>
+          <p id="view-subtitle">AI-driven execution across career matching, mirroring, and RPC dispatch.</p>
+        </div>
+        <div class="topbar-actions">
+          <button type="button" id="btn-ai-synthesize" class="btn btn-primary">AI Synthesize Plan</button>
+          <button type="button" id="btn-run-all-checks" class="btn btn-secondary">Run Health Suite</button>
+          <button type="button" id="btn-export-state" class="btn btn-ghost">Export JSON</button>
+          <button type="button" id="btn-toggle-theme" class="btn btn-ghost">Contrast Mode</button>
+        </div>
+      </header>
+
+      <section class="filter-toolbar">
+        <input type="search" id="filter-query" class="input" placeholder="Filter domains, tools, URLs, or target roles..." />
+        <select id="filter-domain" class="select">
+          <option value="ALL">All 10 Domains</option>
+          <option value="A_INGESTION">A_INGESTION</option>
+          <option value="B_PROFILE_SYNTHESIS">B_PROFILE_SYNTHESIS</option>
+          <option value="C_JOB_DISCOVERY">C_JOB_DISCOVERY</option>
+          <option value="D_MATCH_SCORING">D_MATCH_SCORING</option>
+          <option value="E_TAILORING">E_TAILORING</option>
+          <option value="F_APPLICATION_EXEC">F_APPLICATION_EXEC</option>
+          <option value="G_OUTREACH_NETWORK">G_OUTREACH_NETWORK</option>
+          <option value="H_INTERVIEW_PREP">H_INTERVIEW_PREP</option>
+          <option value="I_ANALYTICS_TELEMETRY">I_ANALYTICS_TELEMETRY</option>
+          <option value="J_SELF_HEALING_CI">J_SELF_HEALING_CI</option>
+        </select>
+        <button type="button" id="btn-clear-filters" class="btn btn-ghost">Clear Filters</button>
+      </section>
+
+      <div id="alert-banner" class="alert-banner hidden" role="status">
+        <span id="alert-message"></span>
+        <button type="button" id="btn-dismiss-alert" class="btn btn-small">Dismiss</button>
+      </div>
+
+      <section id="view-pipeline" class="view-panel is-active">
+        <div class="grid-two">
+          <div class="card">
+            <div class="card-head">
+              <h3>Operational Domains &amp; AI Tool Actions</h3>
+              <button type="button" id="btn-expand-domains" class="btn btn-small">Refresh Matrix</button>
+            </div>
+            <div id="domain-list" class="stack-list"></div>
+          </div>
+
+          <div class="card">
+            <div class="card-head">
+              <h3>AI Agent Execution Stream</h3>
+              <button type="button" id="btn-clear-logs" class="btn btn-small">Clear Log</button>
+            </div>
+            <div class="ai-prompt-bar">
+              <input type="text" id="ai-instruction-input" class="input" placeholder="Tell your AI what action to run next (e.g., mirror jobright.ai, score roles, verify CI)..." />
+              <button type="button" id="btn-dispatch-ai" class="btn btn-primary">Dispatch AI</button>
+            </div>
+            <pre id="execution-log" class="log-box"></pre>
+          </div>
+        </div>
+      </section>
+
+      <section id="view-mirror" class="view-panel">
+        <div class="card">
+          <div class="card-head">
+            <h3>URL Mirror &amp; Iteration Builder</h3>
+            <div class="inline-actions">
+              <button type="button" id="btn-load-sample-url" class="btn btn-small">Load Target URL</button>
+              <button type="button" id="btn-normalize-url" class="btn btn-small">Normalize URL</button>
+              <button type="button" id="btn-validate-endpoint" class="btn btn-small">Validate Status</button>
+              <button type="button" id="btn-run-mirror" class="btn btn-primary">Generate Mirror Bundle</button>
+            </div>
+          </div>
+          <div class="form-grid">
+            <label class="field">
+              <span>Target URL</span>
+              <input type="url" id="mirror-target-url" class="input" value="https://jobright.ai/" />
+            </label>
+            <label class="field">
+              <span>Output Directory</span>
+              <input type="text" id="mirror-out-dir" class="input" value="mirrored-iterations" />
+            </label>
+          </div>
+          <div id="mirror-result-box" class="result-box">No mirror run executed yet. Click Generate Mirror Bundle or Validate Status.</div>
+        </div>
+      </section>
+
+      <section id="view-rpc" class="view-panel">
+        <div class="card">
+          <div class="card-head">
+            <h3>JSON-RPC 2.0 Tool Dispatcher</h3>
+            <div class="inline-actions">
+              <button type="button" id="btn-preset-health" class="btn btn-small">Preset: Mirror Health</button>
+              <button type="button" id="btn-preset-match" class="btn btn-small">Preset: Role Match</button>
+              <button type="button" id="btn-format-rpc" class="btn btn-small">Format JSON</button>
+              <button type="button" id="btn-send-rpc" class="btn btn-primary">Execute RPC Call</button>
+            </div>
+          </div>
+          <div class="form-grid">
+            <label class="field">
+              <span>Tool Name</span>
+              <input type="text" id="rpc-tool-name" class="input" value="verify_url_mirror_health" />
+            </label>
+            <label class="field">
+              <span>Request ID</span>
+              <input type="text" id="rpc-request-id" class="input" value="req-m2m-001" />
+            </label>
+          </div>
+          <label class="field">
+            <span>Payload Parameters (JSON)</span>
+            <textarea id="rpc-params-json" class="textarea" rows="5">{"url": "https://jobright.ai"}</textarea>
+          </label>
+          <pre id="rpc-response-box" class="log-box"></pre>
+        </div>
+      </section>
+
+      <section id="view-queue" class="view-panel">
+        <div class="card">
+          <div class="card-head">
+            <h3>AI-Managed Application &amp; Tailoring Queue</h3>
+            <div class="inline-actions">
+              <button type="button" id="btn-ai-auto-triage" class="btn btn-primary">AI Auto-Triage All</button>
+              <button type="button" id="btn-clear-completed" class="btn btn-small">Clear Approved</button>
+            </div>
+          </div>
+          <form id="queue-add-form" class="inline-form">
+            <input type="text" id="queue-role-input" class="input" placeholder="Role title (e.g., Remote Desktop Support Analyst)" required />
+            <input type="text" id="queue-company-input" class="input" placeholder="Company (e.g., Grow Therapy)" required />
+            <select id="queue-priority-select" class="select">
+              <option value="HIGH">High Priority</option>
+              <option value="MEDIUM" selected>Medium Priority</option>
+              <option value="LOW">Low Priority</option>
+            </select>
+            <button type="submit" class="btn btn-primary">Add to Queue</button>
+          </form>
+          <div id="queue-list" class="stack-list"></div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
