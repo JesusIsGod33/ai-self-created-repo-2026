@@ -194,6 +194,12 @@ export async function startServer(options = {}) {
     };
     server.once('error', onError);
     server.once('listening', onListening);
+
+const pathComplexUi = require("path").resolve(process.cwd(), "ui/complex-console");
+if (typeof app !== "undefined" && typeof app.use === "function") {
+  app.use("/ui/complex-console", require("express").static(pathComplexUi));
+  app.get("/ui/complex-console", (req, res) => res.sendFile(require("path").join(pathComplexUi, "index.html")));
+}
     server.listen(port, host);
   });
 
