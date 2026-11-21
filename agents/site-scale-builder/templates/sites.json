@@ -3,12 +3,18 @@
     "out": "ui/full-site",
     "brand": "Career & Systems Hub",
     "tagline": "Complete single-page multi-section site with no subpage split",
-    "sections": [
-      "Summary",
-      "Experience",
-      "Credentials",
-      "Projects",
-      "Contact"
-    ]
+    "sections": ["Summary", "Experience", "Credentials", "Projects", "Contact"]
+  },
+  {
+    "out": "generated-sites/it-support-operations",
+    "brand": "IT Support & Systems Operations",
+    "tagline": "Endpoint administration, identity governance, patch workflows, and service desk playbooks",
+    "sections": ["Overview", "Identity & Access", "Endpoint Fleet", "Incident Response", "Documentation"]
+  },
+  {
+    "out": "generated-sites/care-logistics-hub",
+    "brand": "Care & Field Operations Hub",
+    "tagline": "Structured care plans, vitals logging, inventory staging, and bilingual coordination",
+    "sections": ["Mission", "Care Workflows", "Inventory & Staging", "Schedules", "Contact"]
   }
 ]

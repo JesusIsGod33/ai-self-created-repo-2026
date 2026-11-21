@@ -1,0 +1,17 @@
+{
+  "brand": "Care & Field Operations Hub",
+  "tagline": "Structured care plans, vitals logging, inventory staging, and bilingual coordination",
+  "sections": [
+    "Mission",
+    "Care Workflows",
+    "Inventory & Staging",
+    "Schedules",
+    "Contact"
+  ],
+  "files": [
+    "index.html",
+    "styles.css",
+    "app.js",
+    "site-manifest.json"
+  ]
+}
