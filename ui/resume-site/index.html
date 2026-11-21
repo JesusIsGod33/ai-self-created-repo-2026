@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Career &amp; Technical Resume Portfolio</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div>
+        <p class="role-kicker">IT Support · Systems Administration · Care &amp; Operations</p>
+        <h1 class="candidate-name">Technical &amp; Operational Resume</h1>
+      </div>
+      <div class="header-actions">
+        <button type="button" id="btn-print-resume" class="btn btn-primary">Print / Save PDF</button>
+        <button type="button" id="btn-toggle-compact" class="btn btn-secondary">Compact View</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container resume-layout">
+    <aside class="sidebar-col">
+      <section class="card">
+        <h2>Core Credentials</h2>
+        <ul id="cert-list" class="clean-list"></ul>
+      </section>
+
+      <section class="card">
+        <h2>Technical &amp; Operational Skills</h2>
+        <div class="filter-row">
+          <button type="button" class="chip is-active" data-filter="ALL">All</button>
+          <button type="button" class="chip" data-filter="IT">IT &amp; Cloud</button>
+          <button type="button" class="chip" data-filter="OPS">Operations &amp; Care</button>
+        </div>
+        <ul id="skill-list" class="pill-list"></ul>
+      </section>
+
+      <section class="card">
+        <h2>Education &amp; Languages</h2>
+        <div id="edu-block" class="muted-copy"></div>
+      </section>
+    </aside>
+
+    <section class="main-col">
+      <section class="card">
+        <h2>Professional Summary</h2>
+        <p id="summary-copy" class="lead-copy"></p>
+      </section>
+
+      <section class="card">
+        <div class="section-head">
+          <h2>Experience</h2>
+          <span id="exp-count" class="badge"></span>
+        </div>
+        <div id="experience-list" class="exp-stack"></div>
+      </section>
+    </section>
+  </main>
+
+  <script type="module" src="./app.js"></script>
+</body>
+</html>

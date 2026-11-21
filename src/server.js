@@ -4,6 +4,7 @@ import path from "node:path";
 
 const PORT = Number(process.env.PORT || 3000);
 const ROOT_DIR = process.cwd();
+const RESUME_UI_DIR = path.resolve(ROOT_DIR, "ui/resume-site");
 const COMPLEX_UI_DIR = path.resolve(ROOT_DIR, "ui/complex-console");
 
 const MIME_TYPES = {
@@ -17,9 +18,9 @@ const MIME_TYPES = {
   ".ico": "image/x-icon"
 };
 
-function serveStaticFile(filePath, res) {
-  const resolved = path.resolve(filePath);
-  if (!resolved.startsWith(COMPLEX_UI_DIR + path.sep) && resolved !== COMPLEX_UI_DIR) {
+function serveFromDir(baseDir, relOrFile, res) {
+  const resolved = path.resolve(baseDir, relOrFile);
+  if (!resolved.startsWith(baseDir + path.sep) && resolved !== baseDir) {
     res.writeHead(403, { "Content-Type": "application/json; charset=utf-8" });
     res.end(JSON.stringify({ error: "Forbidden" }));
     return;
@@ -43,26 +44,34 @@ const server = http.createServer((req, res) => {
   const reqUrl = new URL(req.url || "/", `http://${req.headers.host || "127.0.0.1"}`);
   const pathname = reqUrl.pathname;
 
+  if (pathname === "/" || pathname === "/index.html" || pathname === "/resume" || pathname === "/resume/") {
+    serveFromDir(RESUME_UI_DIR, "index.html", res);
+    return;
+  }
+
+  if (pathname.startsWith("/resume/")) {
+    serveFromDir(RESUME_UI_DIR, pathname.slice("/resume/".length), res);
+    return;
+  }
+
+  if (["/styles.css", "/app.js"].includes(pathname) && fs.existsSync(path.join(RESUME_UI_DIR, pathname.slice(1)))) {
+    serveFromDir(RESUME_UI_DIR, pathname.slice(1), res);
+    return;
+  }
+
   if (pathname === "/ui/complex-console" || pathname === "/ui/complex-console/") {
-    serveStaticFile(path.join(COMPLEX_UI_DIR, "index.html"), res);
+    serveFromDir(COMPLEX_UI_DIR, "index.html", res);
     return;
   }
 
   if (pathname.startsWith("/ui/complex-console/")) {
-    const relPath = pathname.slice("/ui/complex-console/".length);
-    serveStaticFile(path.join(COMPLEX_UI_DIR, relPath), res);
+    serveFromDir(COMPLEX_UI_DIR, pathname.slice("/ui/complex-console/".length), res);
     return;
   }
 
   if (pathname === "/healthz") {
     res.writeHead(200, { "Content-Type": "application/json; charset=utf-8" });
-    res.end(JSON.stringify({ status: "ok", complexConsole: "/ui/complex-console/" }));
-    return;
-  }
-
-  const fallbackIndex = path.join(ROOT_DIR, "index.html");
-  if (pathname === "/" && fs.existsSync(fallbackIndex)) {
-    serveStaticFile(fallbackIndex, res);
+    res.end(JSON.stringify({ status: "ok", resume: "/", complexConsole: "/ui/complex-console/" }));
     return;
   }
 
@@ -71,5 +80,5 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(PORT, "0.0.0.0", () => {
-  console.log(`Server listening on http://0.0.0.0:${PORT} (Complex UI: /ui/complex-console/)`);
+  console.log(`Server listening on http://0.0.0.0:${PORT} (Resume: /, Console: /ui/complex-console/)`);
 });
