@@ -19,8 +19,9 @@ const MIME_TYPES = {
   ".ico": "image/x-icon"
 };
 
-function serveFromDir(baseDir, relOrFile, res) {
-  const resolved = path.resolve(baseDir, relOrFile);
+function sendFileFrom(baseDir, relPath, res) {
+  const cleanRel = relPath.replace(/^\/+/, "") || "index.html";
+  const resolved = path.resolve(baseDir, cleanRel);
   if (!resolved.startsWith(baseDir + path.sep) && resolved !== baseDir) {
     res.writeHead(403, { "Content-Type": "application/json; charset=utf-8" });
     res.end(JSON.stringify({ error: "Forbidden" }));
@@ -30,7 +31,7 @@ function serveFromDir(baseDir, relOrFile, res) {
   fs.stat(resolved, (err, stat) => {
     if (err || !stat.isFile()) {
       res.writeHead(404, { "Content-Type": "application/json; charset=utf-8" });
-      res.end(JSON.stringify({ error: "Not Found", path: resolved }));
+      res.end(JSON.stringify({ error: "Not Found", path: cleanRel }));
       return;
     }
 
@@ -45,38 +46,33 @@ const server = http.createServer((req, res) => {
   const reqUrl = new URL(req.url || "/", `http://${req.headers.host || "127.0.0.1"}`);
   const pathname = reqUrl.pathname;
 
-  if (pathname === "/" || pathname === "/index.html" || pathname === "/full-site" || pathname === "/full-site/") {
-    serveFromDir(FULL_SITE_DIR, "index.html", res);
+  if (pathname === "/full-site" || pathname === "/full-site/") {
+    sendFileFrom(FULL_SITE_DIR, "index.html", res);
     return;
   }
 
   if (pathname.startsWith("/full-site/")) {
-    serveFromDir(FULL_SITE_DIR, pathname.slice("/full-site/".length), res);
-    return;
-  }
-
-  if (["/styles.css", "/app.js", "/site-manifest.json"].includes(pathname) && fs.existsSync(path.join(FULL_SITE_DIR, pathname.slice(1)))) {
-    serveFromDir(FULL_SITE_DIR, pathname.slice(1), res);
+    sendFileFrom(FULL_SITE_DIR, pathname.slice("/full-site/".length), res);
     return;
   }
 
   if (pathname === "/resume" || pathname === "/resume/") {
-    serveFromDir(RESUME_UI_DIR, "index.html", res);
+    sendFileFrom(RESUME_UI_DIR, "index.html", res);
     return;
   }
 
   if (pathname.startsWith("/resume/")) {
-    serveFromDir(RESUME_UI_DIR, pathname.slice("/resume/".length), res);
+    sendFileFrom(RESUME_UI_DIR, pathname.slice("/resume/".length), res);
     return;
   }
 
   if (pathname === "/ui/complex-console" || pathname === "/ui/complex-console/") {
-    serveFromDir(COMPLEX_UI_DIR, "index.html", res);
+    sendFileFrom(COMPLEX_UI_DIR, "index.html", res);
     return;
   }
 
   if (pathname.startsWith("/ui/complex-console/")) {
-    serveFromDir(COMPLEX_UI_DIR, pathname.slice("/ui/complex-console/".length), res);
+    sendFileFrom(COMPLEX_UI_DIR, pathname.slice("/ui/complex-console/".length), res);
     return;
   }
 
@@ -86,10 +82,20 @@ const server = http.createServer((req, res) => {
     return;
   }
 
+  if (pathname === "/" || pathname === "/index.html") {
+    sendFileFrom(FULL_SITE_DIR, "index.html", res);
+    return;
+  }
+
+  if (["/styles.css", "/app.js", "/site-manifest.json"].includes(pathname)) {
+    sendFileFrom(FULL_SITE_DIR, pathname.slice(1), res);
+    return;
+  }
+
   res.writeHead(404, { "Content-Type": "application/json; charset=utf-8" });
   res.end(JSON.stringify({ error: "Not Found", method: req.method, path: pathname }));
 });
 
 server.listen(PORT, "0.0.0.0", () => {
-  console.log(`Server listening on http://0.0.0.0:${PORT} (Full Site: /, Resume: /resume, Console: /ui/complex-console/)`);
+  console.log(`Server listening on http://0.0.0.0:${PORT}`);
 });
