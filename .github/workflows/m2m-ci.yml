@@ -23,3 +23,8 @@ jobs:
         run: python3 -c "import sys; sys.path.insert(0, 'src/m2m'); import orchestrator_engine as oe; o = oe.M2MOrchestrator(); assert len(o.registry) == 100; assert len({getattr(v, 'domain', None) for v in o.registry.values() if getattr(v, 'domain', None)}) == 10; r = o.invoke('verify_url_mirror_health', {'url': 'https://jobright.ai'}); assert r['result']['status'] == 'ok'; print('Verified 100 M2M tools across 10 domains')"
       - name: Verify live Render deployment health
         run: curl -fsSL https://self-created.onrender.com > /dev/null && echo "Live deployment healthy"
+
+      - name: Generate and verify full single-page sites
+        run: |
+          python3 agents/site-scale-builder/batch_generate.py
+          python3 agents/site-scale-builder/verify_sites.py
