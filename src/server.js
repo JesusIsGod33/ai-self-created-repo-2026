@@ -4,6 +4,7 @@ import path from "node:path";
 
 const PORT = Number(process.env.PORT || 3000);
 const ROOT_DIR = process.cwd();
+const FULL_SITE_DIR = path.resolve(ROOT_DIR, "ui/full-site");
 const RESUME_UI_DIR = path.resolve(ROOT_DIR, "ui/resume-site");
 const COMPLEX_UI_DIR = path.resolve(ROOT_DIR, "ui/complex-console");
 
@@ -44,18 +45,28 @@ const server = http.createServer((req, res) => {
   const reqUrl = new URL(req.url || "/", `http://${req.headers.host || "127.0.0.1"}`);
   const pathname = reqUrl.pathname;
 
-  if (pathname === "/" || pathname === "/index.html" || pathname === "/resume" || pathname === "/resume/") {
+  if (pathname === "/" || pathname === "/index.html" || pathname === "/full-site" || pathname === "/full-site/") {
+    serveFromDir(FULL_SITE_DIR, "index.html", res);
+    return;
+  }
+
+  if (pathname.startsWith("/full-site/")) {
+    serveFromDir(FULL_SITE_DIR, pathname.slice("/full-site/".length), res);
+    return;
+  }
+
+  if (["/styles.css", "/app.js", "/site-manifest.json"].includes(pathname) && fs.existsSync(path.join(FULL_SITE_DIR, pathname.slice(1)))) {
+    serveFromDir(FULL_SITE_DIR, pathname.slice(1), res);
+    return;
+  }
+
+  if (pathname === "/resume" || pathname === "/resume/") {
     serveFromDir(RESUME_UI_DIR, "index.html", res);
     return;
   }
 
   if (pathname.startsWith("/resume/")) {
     serveFromDir(RESUME_UI_DIR, pathname.slice("/resume/".length), res);
-    return;
-  }
-
-  if (["/styles.css", "/app.js"].includes(pathname) && fs.existsSync(path.join(RESUME_UI_DIR, pathname.slice(1)))) {
-    serveFromDir(RESUME_UI_DIR, pathname.slice(1), res);
     return;
   }
 
@@ -71,7 +82,7 @@ const server = http.createServer((req, res) => {
 
   if (pathname === "/healthz") {
     res.writeHead(200, { "Content-Type": "application/json; charset=utf-8" });
-    res.end(JSON.stringify({ status: "ok", resume: "/", complexConsole: "/ui/complex-console/" }));
+    res.end(JSON.stringify({ status: "ok", fullSite: "/", resume: "/resume", complexConsole: "/ui/complex-console/" }));
     return;
   }
 
@@ -80,5 +91,5 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(PORT, "0.0.0.0", () => {
-  console.log(`Server listening on http://0.0.0.0:${PORT} (Resume: /, Console: /ui/complex-console/)`);
+  console.log(`Server listening on http://0.0.0.0:${PORT} (Full Site: /, Resume: /resume, Console: /ui/complex-console/)`);
 });
