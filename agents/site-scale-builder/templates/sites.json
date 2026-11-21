@@ -1,0 +1,14 @@
+[
+  {
+    "out": "ui/full-site",
+    "brand": "Career & Systems Hub",
+    "tagline": "Complete single-page multi-section site with no subpage split",
+    "sections": [
+      "Summary",
+      "Experience",
+      "Credentials",
+      "Projects",
+      "Contact"
+    ]
+  }
+]
