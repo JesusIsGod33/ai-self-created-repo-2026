@@ -3,64 +3,125 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Career & Systems Hub - Full Website</title>
+  <title>Career &amp; Systems Hub</title>
   <link rel="stylesheet" href="./styles.css" />
 </head>
 <body>
+  <div class="bg-glow" aria-hidden="true"></div>
+
   <header class="topbar">
-    <div class="wrap nav-row">
-      <div class="logo">Career & Systems Hub</div>
-      <nav class="nav-links">
-        <a href="#summary">Summary</a>
-        <a href="#experience">Experience</a>
-        <a href="#credentials">Credentials</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
+    <div class="container topbar-inner">
+      <a href="#top" class="brand">Career &amp; Systems Hub</a>
+      <nav class="nav-strip" aria-label="Page sections">
+        <a href="#summary" class="nav-pill">Summary</a>
+        <a href="#experience" class="nav-pill">Experience</a>
+        <a href="#credentials" class="nav-pill">Credentials</a>
+        <a href="#projects" class="nav-pill">Projects</a>
+        <a href="#contact" class="nav-pill">Contact</a>
       </nav>
     </div>
   </header>
 
-  <section class="hero">
-    <div class="wrap">
-      <p class="eyebrow">Full Multi-Section Website</p>
-      <h1>Career & Systems Hub</h1>
-      <p class="sub">Complete single-page multi-section site with no subpage split</p>
-      <div class="hero-actions">
-        <button type="button" id="btn-expand-all" class="primary-btn">Highlight All Sections</button>
-        <button type="button" id="btn-reset-all" class="ghost-btn">Reset Highlights</button>
+  <main id="top" class="container page-main">
+    <section class="hero-card">
+      <div class="hero-meta">
+        <span class="pill-badge">Single-Page Full Site</span>
+        <span id="active-count" class="muted-meta">5 Sections Ready</span>
       </div>
-    </div>
-  </section>
+      <h1>Career &amp; Systems Hub</h1>
+      <p class="hero-subtitle">Complete single-page multi-section site with no subpage split</p>
+      <div class="toolbar">
+        <input id="section-search" type="search" class="search-input" placeholder="Filter sections by name..." aria-label="Filter sections" />
+        <button type="button" id="btn-highlight-all" class="btn btn-primary">Highlight All</button>
+        <button type="button" id="btn-clear-all" class="btn btn-subtle">Clear States</button>
+      </div>
+    </section>
 
-  <main class="wrap sections-grid">
-    <section id="summary" class="panel">
-      <h2>Summary</h2>
-      <p>Full multi-section content block generated for Career & Systems Hub (Complete single-page multi-section site with no subpage split) under Summary.</p>
-      <button type="button" class="action-btn" data-section="Summary">Inspect Summary</button>
-    </section>
-    <section id="experience" class="panel">
-      <h2>Experience</h2>
-      <p>Full multi-section content block generated for Career & Systems Hub (Complete single-page multi-section site with no subpage split) under Experience.</p>
-      <button type="button" class="action-btn" data-section="Experience">Inspect Experience</button>
-    </section>
-    <section id="credentials" class="panel">
-      <h2>Credentials</h2>
-      <p>Full multi-section content block generated for Career & Systems Hub (Complete single-page multi-section site with no subpage split) under Credentials.</p>
-      <button type="button" class="action-btn" data-section="Credentials">Inspect Credentials</button>
-    </section>
-    <section id="projects" class="panel">
-      <h2>Projects</h2>
-      <p>Full multi-section content block generated for Career & Systems Hub (Complete single-page multi-section site with no subpage split) under Projects.</p>
-      <button type="button" class="action-btn" data-section="Projects">Inspect Projects</button>
-    </section>
-    <section id="contact" class="panel">
-      <h2>Contact</h2>
-      <p>Full multi-section content block generated for Career & Systems Hub (Complete single-page multi-section site with no subpage split) under Contact.</p>
-      <button type="button" class="action-btn" data-section="Contact">Inspect Contact</button>
-    </section>
-    <section id="output-console" class="panel console-panel">
-      <h2>Live Agent Output</h2>
-      <pre id="site-output">Ready to run actions across 5 sections.</pre>
+    <section class="workspace-layout">
+      <div id="cards-grid" class="cards-grid">
+      <article id="summary" class="card" data-section-name="Summary" data-index="1">
+        <div class="card-top">
+          <span class="step-badge">01</span>
+          <span class="status-tag">Active Module</span>
+        </div>
+        <h2>Summary</h2>
+        <p class="card-copy">Interactive workspace for Summary inside Career &amp; Systems Hub. Open the inspector to run actions, copy a direct section link, or toggle completion.</p>
+        <div class="card-actions">
+          <button type="button" class="btn btn-primary inspect-btn" data-section="Summary">Open Summary</button>
+          <button type="button" class="btn btn-subtle pin-btn" data-section="Summary">Pin Card</button>
+        </div>
+      </article>
+      <article id="experience" class="card" data-section-name="Experience" data-index="2">
+        <div class="card-top">
+          <span class="step-badge">02</span>
+          <span class="status-tag">Active Module</span>
+        </div>
+        <h2>Experience</h2>
+        <p class="card-copy">Interactive workspace for Experience inside Career &amp; Systems Hub. Open the inspector to run actions, copy a direct section link, or toggle completion.</p>
+        <div class="card-actions">
+          <button type="button" class="btn btn-primary inspect-btn" data-section="Experience">Open Experience</button>
+          <button type="button" class="btn btn-subtle pin-btn" data-section="Experience">Pin Card</button>
+        </div>
+      </article>
+      <article id="credentials" class="card" data-section-name="Credentials" data-index="3">
+        <div class="card-top">
+          <span class="step-badge">03</span>
+          <span class="status-tag">Active Module</span>
+        </div>
+        <h2>Credentials</h2>
+        <p class="card-copy">Interactive workspace for Credentials inside Career &amp; Systems Hub. Open the inspector to run actions, copy a direct section link, or toggle completion.</p>
+        <div class="card-actions">
+          <button type="button" class="btn btn-primary inspect-btn" data-section="Credentials">Open Credentials</button>
+          <button type="button" class="btn btn-subtle pin-btn" data-section="Credentials">Pin Card</button>
+        </div>
+      </article>
+      <article id="projects" class="card" data-section-name="Projects" data-index="4">
+        <div class="card-top">
+          <span class="step-badge">04</span>
+          <span class="status-tag">Active Module</span>
+        </div>
+        <h2>Projects</h2>
+        <p class="card-copy">Interactive workspace for Projects inside Career &amp; Systems Hub. Open the inspector to run actions, copy a direct section link, or toggle completion.</p>
+        <div class="card-actions">
+          <button type="button" class="btn btn-primary inspect-btn" data-section="Projects">Open Projects</button>
+          <button type="button" class="btn btn-subtle pin-btn" data-section="Projects">Pin Card</button>
+        </div>
+      </article>
+      <article id="contact" class="card" data-section-name="Contact" data-index="5">
+        <div class="card-top">
+          <span class="step-badge">05</span>
+          <span class="status-tag">Active Module</span>
+        </div>
+        <h2>Contact</h2>
+        <p class="card-copy">Interactive workspace for Contact inside Career &amp; Systems Hub. Open the inspector to run actions, copy a direct section link, or toggle completion.</p>
+        <div class="card-actions">
+          <button type="button" class="btn btn-primary inspect-btn" data-section="Contact">Open Contact</button>
+          <button type="button" class="btn btn-subtle pin-btn" data-section="Contact">Pin Card</button>
+        </div>
+      </article>
+      </div>
+
+      <aside id="inspector-drawer" class="inspector-card" aria-live="polite">
+        <div class="inspector-header">
+          <span class="pill-badge">Section Inspector</span>
+          <button type="button" id="btn-close-inspector" class="btn btn-ghost">Close</button>
+        </div>
+        <h2 id="inspector-title">Select a section to inspect</h2>
+        <p id="inspector-body" class="inspector-copy">Click any "Open" button on a card to load interactive controls, run a simulated workflow step, or copy its anchor link.</p>
+        <div class="inspector-actions">
+          <button type="button" id="btn-run-step" class="btn btn-primary" disabled>Run Section Action</button>
+          <button type="button" id="btn-copy-link" class="btn btn-subtle" disabled>Copy Anchor Link</button>
+        </div>
+        <div class="log-box">
+          <div class="log-header">
+            <span>Activity Log</span>
+            <button type="button" id="btn-clear-log" class="link-btn">Clear</button>
+          </div>
+          <ul id="activity-log" class="activity-list">
+            <li>Initialized Career &amp; Systems Hub with 5 sections.</li>
+          </ul>
+        </div>
+      </aside>
     </section>
   </main>
 

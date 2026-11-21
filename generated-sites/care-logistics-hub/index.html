@@ -3,64 +3,125 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Care & Field Operations Hub - Full Website</title>
+  <title>Care &amp; Field Operations Hub</title>
   <link rel="stylesheet" href="./styles.css" />
 </head>
 <body>
+  <div class="bg-glow" aria-hidden="true"></div>
+
   <header class="topbar">
-    <div class="wrap nav-row">
-      <div class="logo">Care & Field Operations Hub</div>
-      <nav class="nav-links">
-        <a href="#mission">Mission</a>
-        <a href="#care-workflows">Care Workflows</a>
-        <a href="#inventory-&-staging">Inventory & Staging</a>
-        <a href="#schedules">Schedules</a>
-        <a href="#contact">Contact</a>
+    <div class="container topbar-inner">
+      <a href="#top" class="brand">Care &amp; Field Operations Hub</a>
+      <nav class="nav-strip" aria-label="Page sections">
+        <a href="#mission" class="nav-pill">Mission</a>
+        <a href="#care-workflows" class="nav-pill">Care Workflows</a>
+        <a href="#inventory-staging" class="nav-pill">Inventory &amp; Staging</a>
+        <a href="#schedules" class="nav-pill">Schedules</a>
+        <a href="#contact" class="nav-pill">Contact</a>
       </nav>
     </div>
   </header>
 
-  <section class="hero">
-    <div class="wrap">
-      <p class="eyebrow">Full Multi-Section Website</p>
-      <h1>Care & Field Operations Hub</h1>
-      <p class="sub">Structured care plans, vitals logging, inventory staging, and bilingual coordination</p>
-      <div class="hero-actions">
-        <button type="button" id="btn-expand-all" class="primary-btn">Highlight All Sections</button>
-        <button type="button" id="btn-reset-all" class="ghost-btn">Reset Highlights</button>
+  <main id="top" class="container page-main">
+    <section class="hero-card">
+      <div class="hero-meta">
+        <span class="pill-badge">Single-Page Full Site</span>
+        <span id="active-count" class="muted-meta">5 Sections Ready</span>
       </div>
-    </div>
-  </section>
+      <h1>Care &amp; Field Operations Hub</h1>
+      <p class="hero-subtitle">Structured care plans, vitals logging, inventory staging, and bilingual coordination</p>
+      <div class="toolbar">
+        <input id="section-search" type="search" class="search-input" placeholder="Filter sections by name..." aria-label="Filter sections" />
+        <button type="button" id="btn-highlight-all" class="btn btn-primary">Highlight All</button>
+        <button type="button" id="btn-clear-all" class="btn btn-subtle">Clear States</button>
+      </div>
+    </section>
 
-  <main class="wrap sections-grid">
-    <section id="mission" class="panel">
-      <h2>Mission</h2>
-      <p>Full multi-section content block generated for Care & Field Operations Hub (Structured care plans, vitals logging, inventory staging, and bilingual coordination) under Mission.</p>
-      <button type="button" class="action-btn" data-section="Mission">Inspect Mission</button>
-    </section>
-    <section id="care-workflows" class="panel">
-      <h2>Care Workflows</h2>
-      <p>Full multi-section content block generated for Care & Field Operations Hub (Structured care plans, vitals logging, inventory staging, and bilingual coordination) under Care Workflows.</p>
-      <button type="button" class="action-btn" data-section="Care Workflows">Inspect Care Workflows</button>
-    </section>
-    <section id="inventory-&-staging" class="panel">
-      <h2>Inventory & Staging</h2>
-      <p>Full multi-section content block generated for Care & Field Operations Hub (Structured care plans, vitals logging, inventory staging, and bilingual coordination) under Inventory & Staging.</p>
-      <button type="button" class="action-btn" data-section="Inventory & Staging">Inspect Inventory & Staging</button>
-    </section>
-    <section id="schedules" class="panel">
-      <h2>Schedules</h2>
-      <p>Full multi-section content block generated for Care & Field Operations Hub (Structured care plans, vitals logging, inventory staging, and bilingual coordination) under Schedules.</p>
-      <button type="button" class="action-btn" data-section="Schedules">Inspect Schedules</button>
-    </section>
-    <section id="contact" class="panel">
-      <h2>Contact</h2>
-      <p>Full multi-section content block generated for Care & Field Operations Hub (Structured care plans, vitals logging, inventory staging, and bilingual coordination) under Contact.</p>
-      <button type="button" class="action-btn" data-section="Contact">Inspect Contact</button>
-    </section>
-    <section id="output-console" class="panel console-panel">
-      <h2>Live Agent Output</h2>
-      <pre id="site-output">Ready to run actions across 5 sections.</pre>
+    <section class="workspace-layout">
+      <div id="cards-grid" class="cards-grid">
+      <article id="mission" class="card" data-section-name="Mission" data-index="1">
+        <div class="card-top">
+          <span class="step-badge">01</span>
+          <span class="status-tag">Active Module</span>
+        </div>
+        <h2>Mission</h2>
+        <p class="card-copy">Interactive workspace for Mission inside Care &amp; Field Operations Hub. Open the inspector to run actions, copy a direct section link, or toggle completion.</p>
+        <div class="card-actions">
+          <button type="button" class="btn btn-primary inspect-btn" data-section="Mission">Open Mission</button>
+          <button type="button" class="btn btn-subtle pin-btn" data-section="Mission">Pin Card</button>
+        </div>
+      </article>
+      <article id="care-workflows" class="card" data-section-name="Care Workflows" data-index="2">
+        <div class="card-top">
+          <span class="step-badge">02</span>
+          <span class="status-tag">Active Module</span>
+        </div>
+        <h2>Care Workflows</h2>
+        <p class="card-copy">Interactive workspace for Care Workflows inside Care &amp; Field Operations Hub. Open the inspector to run actions, copy a direct section link, or toggle completion.</p>
+        <div class="card-actions">
+          <button type="button" class="btn btn-primary inspect-btn" data-section="Care Workflows">Open Care Workflows</button>
+          <button type="button" class="btn btn-subtle pin-btn" data-section="Care Workflows">Pin Card</button>
+        </div>
+      </article>
+      <article id="inventory-staging" class="card" data-section-name="Inventory &amp; Staging" data-index="3">
+        <div class="card-top">
+          <span class="step-badge">03</span>
+          <span class="status-tag">Active Module</span>
+        </div>
+        <h2>Inventory &amp; Staging</h2>
+        <p class="card-copy">Interactive workspace for Inventory &amp; Staging inside Care &amp; Field Operations Hub. Open the inspector to run actions, copy a direct section link, or toggle completion.</p>
+        <div class="card-actions">
+          <button type="button" class="btn btn-primary inspect-btn" data-section="Inventory &amp; Staging">Open Inventory &amp; Staging</button>
+          <button type="button" class="btn btn-subtle pin-btn" data-section="Inventory &amp; Staging">Pin Card</button>
+        </div>
+      </article>
+      <article id="schedules" class="card" data-section-name="Schedules" data-index="4">
+        <div class="card-top">
+          <span class="step-badge">04</span>
+          <span class="status-tag">Active Module</span>
+        </div>
+        <h2>Schedules</h2>
+        <p class="card-copy">Interactive workspace for Schedules inside Care &amp; Field Operations Hub. Open the inspector to run actions, copy a direct section link, or toggle completion.</p>
+        <div class="card-actions">
+          <button type="button" class="btn btn-primary inspect-btn" data-section="Schedules">Open Schedules</button>
+          <button type="button" class="btn btn-subtle pin-btn" data-section="Schedules">Pin Card</button>
+        </div>
+      </article>
+      <article id="contact" class="card" data-section-name="Contact" data-index="5">
+        <div class="card-top">
+          <span class="step-badge">05</span>
+          <span class="status-tag">Active Module</span>
+        </div>
+        <h2>Contact</h2>
+        <p class="card-copy">Interactive workspace for Contact inside Care &amp; Field Operations Hub. Open the inspector to run actions, copy a direct section link, or toggle completion.</p>
+        <div class="card-actions">
+          <button type="button" class="btn btn-primary inspect-btn" data-section="Contact">Open Contact</button>
+          <button type="button" class="btn btn-subtle pin-btn" data-section="Contact">Pin Card</button>
+        </div>
+      </article>
+      </div>
+
+      <aside id="inspector-drawer" class="inspector-card" aria-live="polite">
+        <div class="inspector-header">
+          <span class="pill-badge">Section Inspector</span>
+          <button type="button" id="btn-close-inspector" class="btn btn-ghost">Close</button>
+        </div>
+        <h2 id="inspector-title">Select a section to inspect</h2>
+        <p id="inspector-body" class="inspector-copy">Click any "Open" button on a card to load interactive controls, run a simulated workflow step, or copy its anchor link.</p>
+        <div class="inspector-actions">
+          <button type="button" id="btn-run-step" class="btn btn-primary" disabled>Run Section Action</button>
+          <button type="button" id="btn-copy-link" class="btn btn-subtle" disabled>Copy Anchor Link</button>
+        </div>
+        <div class="log-box">
+          <div class="log-header">
+            <span>Activity Log</span>
+            <button type="button" id="btn-clear-log" class="link-btn">Clear</button>
+          </div>
+          <ul id="activity-log" class="activity-list">
+            <li>Initialized Care &amp; Field Operations Hub with 5 sections.</li>
+          </ul>
+        </div>
+      </aside>
     </section>
   </main>
 

@@ -3,64 +3,125 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>IT Support & Systems Operations - Full Website</title>
+  <title>IT Support &amp; Systems Operations</title>
   <link rel="stylesheet" href="./styles.css" />
 </head>
 <body>
+  <div class="bg-glow" aria-hidden="true"></div>
+
   <header class="topbar">
-    <div class="wrap nav-row">
-      <div class="logo">IT Support & Systems Operations</div>
-      <nav class="nav-links">
-        <a href="#overview">Overview</a>
-        <a href="#identity-&-access">Identity & Access</a>
-        <a href="#endpoint-fleet">Endpoint Fleet</a>
-        <a href="#incident-response">Incident Response</a>
-        <a href="#documentation">Documentation</a>
+    <div class="container topbar-inner">
+      <a href="#top" class="brand">IT Support &amp; Systems Operations</a>
+      <nav class="nav-strip" aria-label="Page sections">
+        <a href="#overview" class="nav-pill">Overview</a>
+        <a href="#identity-access" class="nav-pill">Identity &amp; Access</a>
+        <a href="#endpoint-fleet" class="nav-pill">Endpoint Fleet</a>
+        <a href="#incident-response" class="nav-pill">Incident Response</a>
+        <a href="#documentation" class="nav-pill">Documentation</a>
       </nav>
     </div>
   </header>
 
-  <section class="hero">
-    <div class="wrap">
-      <p class="eyebrow">Full Multi-Section Website</p>
-      <h1>IT Support & Systems Operations</h1>
-      <p class="sub">Endpoint administration, identity governance, patch workflows, and service desk playbooks</p>
-      <div class="hero-actions">
-        <button type="button" id="btn-expand-all" class="primary-btn">Highlight All Sections</button>
-        <button type="button" id="btn-reset-all" class="ghost-btn">Reset Highlights</button>
+  <main id="top" class="container page-main">
+    <section class="hero-card">
+      <div class="hero-meta">
+        <span class="pill-badge">Single-Page Full Site</span>
+        <span id="active-count" class="muted-meta">5 Sections Ready</span>
       </div>
-    </div>
-  </section>
+      <h1>IT Support &amp; Systems Operations</h1>
+      <p class="hero-subtitle">Endpoint administration, identity governance, patch workflows, and service desk playbooks</p>
+      <div class="toolbar">
+        <input id="section-search" type="search" class="search-input" placeholder="Filter sections by name..." aria-label="Filter sections" />
+        <button type="button" id="btn-highlight-all" class="btn btn-primary">Highlight All</button>
+        <button type="button" id="btn-clear-all" class="btn btn-subtle">Clear States</button>
+      </div>
+    </section>
 
-  <main class="wrap sections-grid">
-    <section id="overview" class="panel">
-      <h2>Overview</h2>
-      <p>Full multi-section content block generated for IT Support & Systems Operations (Endpoint administration, identity governance, patch workflows, and service desk playbooks) under Overview.</p>
-      <button type="button" class="action-btn" data-section="Overview">Inspect Overview</button>
-    </section>
-    <section id="identity-&-access" class="panel">
-      <h2>Identity & Access</h2>
-      <p>Full multi-section content block generated for IT Support & Systems Operations (Endpoint administration, identity governance, patch workflows, and service desk playbooks) under Identity & Access.</p>
-      <button type="button" class="action-btn" data-section="Identity & Access">Inspect Identity & Access</button>
-    </section>
-    <section id="endpoint-fleet" class="panel">
-      <h2>Endpoint Fleet</h2>
-      <p>Full multi-section content block generated for IT Support & Systems Operations (Endpoint administration, identity governance, patch workflows, and service desk playbooks) under Endpoint Fleet.</p>
-      <button type="button" class="action-btn" data-section="Endpoint Fleet">Inspect Endpoint Fleet</button>
-    </section>
-    <section id="incident-response" class="panel">
-      <h2>Incident Response</h2>
-      <p>Full multi-section content block generated for IT Support & Systems Operations (Endpoint administration, identity governance, patch workflows, and service desk playbooks) under Incident Response.</p>
-      <button type="button" class="action-btn" data-section="Incident Response">Inspect Incident Response</button>
-    </section>
-    <section id="documentation" class="panel">
-      <h2>Documentation</h2>
-      <p>Full multi-section content block generated for IT Support & Systems Operations (Endpoint administration, identity governance, patch workflows, and service desk playbooks) under Documentation.</p>
-      <button type="button" class="action-btn" data-section="Documentation">Inspect Documentation</button>
-    </section>
-    <section id="output-console" class="panel console-panel">
-      <h2>Live Agent Output</h2>
-      <pre id="site-output">Ready to run actions across 5 sections.</pre>
+    <section class="workspace-layout">
+      <div id="cards-grid" class="cards-grid">
+      <article id="overview" class="card" data-section-name="Overview" data-index="1">
+        <div class="card-top">
+          <span class="step-badge">01</span>
+          <span class="status-tag">Active Module</span>
+        </div>
+        <h2>Overview</h2>
+        <p class="card-copy">Interactive workspace for Overview inside IT Support &amp; Systems Operations. Open the inspector to run actions, copy a direct section link, or toggle completion.</p>
+        <div class="card-actions">
+          <button type="button" class="btn btn-primary inspect-btn" data-section="Overview">Open Overview</button>
+          <button type="button" class="btn btn-subtle pin-btn" data-section="Overview">Pin Card</button>
+        </div>
+      </article>
+      <article id="identity-access" class="card" data-section-name="Identity &amp; Access" data-index="2">
+        <div class="card-top">
+          <span class="step-badge">02</span>
+          <span class="status-tag">Active Module</span>
+        </div>
+        <h2>Identity &amp; Access</h2>
+        <p class="card-copy">Interactive workspace for Identity &amp; Access inside IT Support &amp; Systems Operations. Open the inspector to run actions, copy a direct section link, or toggle completion.</p>
+        <div class="card-actions">
+          <button type="button" class="btn btn-primary inspect-btn" data-section="Identity &amp; Access">Open Identity &amp; Access</button>
+          <button type="button" class="btn btn-subtle pin-btn" data-section="Identity &amp; Access">Pin Card</button>
+        </div>
+      </article>
+      <article id="endpoint-fleet" class="card" data-section-name="Endpoint Fleet" data-index="3">
+        <div class="card-top">
+          <span class="step-badge">03</span>
+          <span class="status-tag">Active Module</span>
+        </div>
+        <h2>Endpoint Fleet</h2>
+        <p class="card-copy">Interactive workspace for Endpoint Fleet inside IT Support &amp; Systems Operations. Open the inspector to run actions, copy a direct section link, or toggle completion.</p>
+        <div class="card-actions">
+          <button type="button" class="btn btn-primary inspect-btn" data-section="Endpoint Fleet">Open Endpoint Fleet</button>
+          <button type="button" class="btn btn-subtle pin-btn" data-section="Endpoint Fleet">Pin Card</button>
+        </div>
+      </article>
+      <article id="incident-response" class="card" data-section-name="Incident Response" data-index="4">
+        <div class="card-top">
+          <span class="step-badge">04</span>
+          <span class="status-tag">Active Module</span>
+        </div>
+        <h2>Incident Response</h2>
+        <p class="card-copy">Interactive workspace for Incident Response inside IT Support &amp; Systems Operations. Open the inspector to run actions, copy a direct section link, or toggle completion.</p>
+        <div class="card-actions">
+          <button type="button" class="btn btn-primary inspect-btn" data-section="Incident Response">Open Incident Response</button>
+          <button type="button" class="btn btn-subtle pin-btn" data-section="Incident Response">Pin Card</button>
+        </div>
+      </article>
+      <article id="documentation" class="card" data-section-name="Documentation" data-index="5">
+        <div class="card-top">
+          <span class="step-badge">05</span>
+          <span class="status-tag">Active Module</span>
+        </div>
+        <h2>Documentation</h2>
+        <p class="card-copy">Interactive workspace for Documentation inside IT Support &amp; Systems Operations. Open the inspector to run actions, copy a direct section link, or toggle completion.</p>
+        <div class="card-actions">
+          <button type="button" class="btn btn-primary inspect-btn" data-section="Documentation">Open Documentation</button>
+          <button type="button" class="btn btn-subtle pin-btn" data-section="Documentation">Pin Card</button>
+        </div>
+      </article>
+      </div>
+
+      <aside id="inspector-drawer" class="inspector-card" aria-live="polite">
+        <div class="inspector-header">
+          <span class="pill-badge">Section Inspector</span>
+          <button type="button" id="btn-close-inspector" class="btn btn-ghost">Close</button>
+        </div>
+        <h2 id="inspector-title">Select a section to inspect</h2>
+        <p id="inspector-body" class="inspector-copy">Click any "Open" button on a card to load interactive controls, run a simulated workflow step, or copy its anchor link.</p>
+        <div class="inspector-actions">
+          <button type="button" id="btn-run-step" class="btn btn-primary" disabled>Run Section Action</button>
+          <button type="button" id="btn-copy-link" class="btn btn-subtle" disabled>Copy Anchor Link</button>
+        </div>
+        <div class="log-box">
+          <div class="log-header">
+            <span>Activity Log</span>
+            <button type="button" id="btn-clear-log" class="link-btn">Clear</button>
+          </div>
+          <ul id="activity-log" class="activity-list">
+            <li>Initialized IT Support &amp; Systems Operations with 5 sections.</li>
+          </ul>
+        </div>
+      </aside>
     </section>
   </main>
 
