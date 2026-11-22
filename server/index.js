@@ -165,7 +165,11 @@ if (process.argv[1] && process.argv[1].endsWith("server/index.js")) {
   const port = Number(process.env.PORT || 4080);
   const { app, orchestrator } = createApp();
   orchestrator.start();
-  app.listen(port, host, () => {
+  
+const path = require('path');
+app.use(express.static(path.join(__dirname, '..', 'public')));
+
+app.listen(port, host, () => {
     console.log(`[READY] Career Orchestrator running on http://${host}:${port}`);
   });
 }
