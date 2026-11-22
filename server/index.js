@@ -53,7 +53,7 @@ export function createApp(options = {}) {
   });
 
   const server = http.createServer((req, res) => {
-    const urlObj = new URL(req.url || "/", "http://127.0.0.1");
+    const urlObj = new URL(req.url || "/", "http://0.0.0.0");
     const pathname = urlObj.pathname;
 
     if (req.method === "GET" && pathname === "/healthz") {
@@ -161,7 +161,7 @@ export function createApp(options = {}) {
 }
 
 if (process.argv[1] && process.argv[1].endsWith("server/index.js")) {
-  const host = process.env.HOST || "127.0.0.1";
+  const host = process.env.HOST || "0.0.0.0";
   const port = Number(process.env.PORT || 4080);
   const { app, orchestrator } = createApp();
   orchestrator.start();
