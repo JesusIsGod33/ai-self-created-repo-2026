@@ -1,0 +1,1 @@
+import time; print('Allocating dummy memory blocks...'); d=['X'*1024**2 for _ in range(100)]; print('Allocation complete. Releasing...'); del d

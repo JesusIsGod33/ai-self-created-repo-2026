@@ -1,0 +1,1 @@
+import psutil, json; print(json.dumps({'CPU': psutil.cpu_percent(), 'RAM': psutil.virtual_memory().percent, 'Disk': psutil.disk_usage('/').percent}))

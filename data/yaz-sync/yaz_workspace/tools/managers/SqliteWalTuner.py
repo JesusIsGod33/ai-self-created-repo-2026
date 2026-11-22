@@ -1,0 +1,1 @@
+import sqlite3; c=sqlite3.connect(':memory:'); c.execute('PRAGMA journal_mode=WAL'); print('WAL Tuned.')

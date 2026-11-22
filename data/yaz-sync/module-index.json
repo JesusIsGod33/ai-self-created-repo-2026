@@ -1,0 +1,191 @@
+{
+  "updatedAt": "2026-11-21T05:10:19.679Z",
+  "mirrorDir": "/home/Woken/career-orchestrator-stack/data/yaz-sync",
+  "pattern": "AstRefactorPlanner|AtbashCipher|AuditManager|AuthManager|CaesarCipher",
+  "totalMatched": 7,
+  "modules": [
+    {
+      "name": "AstRefactorPlanner.py",
+      "relativePath": "yaz_workspace/tools/managers/AstRefactorPlanner.py",
+      "fullPath": "/home/Woken/career-orchestrator-stack/data/yaz-sync/yaz_workspace/tools/managers/AstRefactorPlanner.py",
+      "size": 4542,
+      "lineCount": 135,
+      "symbols": [
+        {
+          "line": "class CoreEngine:",
+          "lineNumber": 4
+        },
+        {
+          "line": "def __init__(self):",
+          "lineNumber": 5
+        },
+        {
+          "line": "def add_class_structure(self, class_name, description, attributes, methods):",
+          "lineNumber": 10
+        },
+        {
+          "line": "def add_code_implementation(self, language, code):",
+          "lineNumber": 18
+        },
+        {
+          "line": "def add_test_case(self, test_case_name, description, input_data, expected_output):",
+          "lineNumber": 24
+        },
+        {
+          "line": "def to_json(self):",
+          "lineNumber": 32
+        },
+        {
+          "line": "class AstRefactorPlanner(CoreEngine):",
+          "lineNumber": 39
+        },
+        {
+          "line": "def __init__(self):",
+          "lineNumber": 40
+        },
+        {
+          "line": "def refactor_code(self, code):",
+          "lineNumber": 43
+        },
+        {
+          "line": "def plan_refactoring(self, class_structures):",
+          "lineNumber": 52
+        },
+        {
+          "line": "def main():",
+          "lineNumber": 66
+        },
+        {
+          "line": "class AstRefactorPlanner:",
+          "lineNumber": 92
+        },
+        {
+          "line": "def __init__(self):",
+          "lineNumber": 93
+        },
+        {
+          "line": "def refactor_code(self, code):",
+          "lineNumber": 98
+        },
+        {
+          "line": "def plan_refactoring(self, class_structures):",
+          "lineNumber": 107
+        }
+      ]
+    },
+    {
+      "name": "AtbashCipher.py",
+      "relativePath": "yaz_workspace/tools/managers/AtbashCipher.py",
+      "fullPath": "/home/Woken/career-orchestrator-stack/data/yaz-sync/yaz_workspace/tools/managers/AtbashCipher.py",
+      "size": 1448,
+      "lineCount": 55,
+      "symbols": [
+        {
+          "line": "def atbash_slow(sequence: str) -> str:",
+          "lineNumber": 6
+        },
+        {
+          "line": "def atbash(sequence: str) -> str:",
+          "lineNumber": 26
+        },
+        {
+          "line": "def benchmark() -> None:",
+          "lineNumber": 41
+        }
+      ]
+    },
+    {
+      "name": "AuditManager.py",
+      "relativePath": "yaz_workspace/tools/managers/AuditManager.py",
+      "fullPath": "/home/Woken/career-orchestrator-stack/data/yaz-sync/yaz_workspace/tools/managers/AuditManager.py",
+      "size": 412,
+      "lineCount": 13,
+      "symbols": [
+        {
+          "line": "class AuditManager(CoreEngine):",
+          "lineNumber": 5
+        },
+        {
+          "line": "def run(self, target=\"localhost\", params={}):",
+          "lineNumber": 6
+        }
+      ]
+    },
+    {
+      "name": "AuthManager.py",
+      "relativePath": "yaz_workspace/tools/managers/AuthManager.py",
+      "fullPath": "/home/Woken/career-orchestrator-stack/data/yaz-sync/yaz_workspace/tools/managers/AuthManager.py",
+      "size": 408,
+      "lineCount": 13,
+      "symbols": [
+        {
+          "line": "class AuthManager(CoreEngine):",
+          "lineNumber": 5
+        },
+        {
+          "line": "def run(self, target=\"localhost\", params={}):",
+          "lineNumber": 6
+        }
+      ]
+    },
+    {
+      "name": "CaesarCipher.py",
+      "relativePath": "yaz_workspace/tools/managers/CaesarCipher.py",
+      "fullPath": "/home/Woken/career-orchestrator-stack/data/yaz-sync/yaz_workspace/tools/managers/CaesarCipher.py",
+      "size": 7956,
+      "lineCount": 257,
+      "symbols": [
+        {
+          "line": "def encrypt(input_string: str, key: int, alphabet: str | None = None) -> str:",
+          "lineNumber": 6
+        },
+        {
+          "line": "def decrypt(input_string: str, key: int, alphabet: str | None = None) -> str:",
+          "lineNumber": 91
+        },
+        {
+          "line": "def brute_force(input_string: str, alphabet: str | None = None) -> dict[int, str]:",
+          "lineNumber": 163
+        }
+      ]
+    },
+    {
+      "name": "CaesarCipherEngine.py",
+      "relativePath": "yaz_workspace/tools/managers/CaesarCipherEngine.py",
+      "fullPath": "/home/Woken/career-orchestrator-stack/data/yaz-sync/yaz_workspace/tools/managers/CaesarCipherEngine.py",
+      "size": 7956,
+      "lineCount": 257,
+      "symbols": [
+        {
+          "line": "def encrypt(input_string: str, key: int, alphabet: str | None = None) -> str:",
+          "lineNumber": 6
+        },
+        {
+          "line": "def decrypt(input_string: str, key: int, alphabet: str | None = None) -> str:",
+          "lineNumber": 91
+        },
+        {
+          "line": "def brute_force(input_string: str, alphabet: str | None = None) -> dict[int, str]:",
+          "lineNumber": 163
+        }
+      ]
+    },
+    {
+      "name": "OAuthManager.py",
+      "relativePath": "yaz_workspace/tools/managers/OAuthManager.py",
+      "fullPath": "/home/Woken/career-orchestrator-stack/data/yaz-sync/yaz_workspace/tools/managers/OAuthManager.py",
+      "size": 412,
+      "lineCount": 13,
+      "symbols": [
+        {
+          "line": "class OAuthManager(CoreEngine):",
+          "lineNumber": 5
+        },
+        {
+          "line": "def run(self, target=\"localhost\", params={}):",
+          "lineNumber": 6
+        }
+      ]
+    }
+  ]
+}

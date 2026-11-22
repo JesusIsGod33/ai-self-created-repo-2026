@@ -1,0 +1,1 @@
+import platform, psutil, json; print(json.dumps({'OS': platform.system(), 'Release': platform.release(), 'CPU_Cores': psutil.cpu_count(), 'RAM_GB': round(psutil.virtual_memory().total/(1024**3), 2)}, indent=2))

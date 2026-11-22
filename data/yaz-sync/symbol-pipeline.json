@@ -1,0 +1,1143 @@
+{
+  "updatedAt": "2026-11-21T05:14:50.005Z",
+  "mirrorDir": "/home/Woken/career-orchestrator-stack/data/yaz-sync",
+  "pipelinePath": "/home/Woken/career-orchestrator-stack/data/yaz-sync/symbol-pipeline.json",
+  "filters": {
+    "pattern": "",
+    "kind": "class",
+    "contextLines": 3,
+    "limit": 25,
+    "maxFiles": 400
+  },
+  "summary": {
+    "auditedModules": 400,
+    "validSyntaxCount": 400,
+    "syntaxErrorCount": 0,
+    "totalSymbols": 3228,
+    "symbolsByKind": {
+      "class": 389,
+      "def": 2781,
+      "async_def": 58
+    },
+    "brokenModules": []
+  },
+  "totalHits": 389,
+  "hits": [
+    {
+      "module": "FibonacciEngine.py",
+      "relativePath": "yaz_workspace/FibonacciEngine.py",
+      "syntaxOk": true,
+      "kind": "class",
+      "symbol": "FibonacciEngine",
+      "lineno": 1
+    },
+    {
+      "module": "seed_builder.py",
+      "relativePath": "yaz_workspace/tools/ingested/Helix-AGI/bootstrap/seed_builder.py",
+      "syntaxOk": true,
+      "kind": "class",
+      "symbol": "BootstrapContext",
+      "lineno": 128
+    },
+    {
+      "module": "friction_damper.py",
+      "relativePath": "yaz_workspace/tools/ingested/Helix-AGI/brain/friction_damper.py",
+      "syntaxOk": true,
+      "kind": "class",
+      "symbol": "FrictionDamper",
+      "lineno": 17
+    },
+    {
+      "module": "sensory_cortex.py",
+      "relativePath": "yaz_workspace/tools/ingested/Helix-AGI/brain/sensory_cortex.py",
+      "syntaxOk": true,
+      "kind": "class",
+      "symbol": "SensoryCortex",
+      "lineno": 47
+    },
+    {
+      "module": "stability_sentinel.py",
+      "relativePath": "yaz_workspace/tools/ingested/Helix-AGI/brain/stability_sentinel.py",
+      "syntaxOk": true,
+      "kind": "class",
+      "symbol": "StabilitySentinel",
+      "lineno": 34
+    },
+    {
+      "module": "vision_cortex.py",
+      "relativePath": "yaz_workspace/tools/ingested/Helix-AGI/brain/vision_cortex.py",
+      "syntaxOk": true,
+      "kind": "class",
+      "symbol": "VisionCortex",
+      "lineno": 46
+    },
+    {
+      "module": "discord_bot.py",
+      "relativePath": "yaz_workspace/tools/ingested/Helix-AGI/comms/discord_bot.py",
+      "syntaxOk": true,
+      "kind": "class",
+      "symbol": "HelixDiscordBot",
+      "lineno": 27
+    },
+    {
+      "module": "telegram_bot.py",
+      "relativePath": "yaz_workspace/tools/ingested/Helix-AGI/comms/telegram_bot.py",
+      "syntaxOk": true,
+      "kind": "class",
+      "symbol": "HelixTelegramBot",
+      "lineno": 22
+    },
+    {
+      "module": "affect_field.py",
+      "relativePath": "yaz_workspace/tools/ingested/Helix-AGI/core/affect_field.py",
+      "syntaxOk": true,
+      "kind": "class",
+      "symbol": "WavePacket",
+      "lineno": 101
+    },
+    {
+      "module": "affect_field.py",
+      "relativePath": "yaz_workspace/tools/ingested/Helix-AGI/core/affect_field.py",
+      "syntaxOk": true,
+      "kind": "class",
+      "symbol": "InterferenceResult",
+      "lineno": 233
+    },
+    {
+      "module": "affect_field.py",
+      "relativePath": "yaz_workspace/tools/ingested/Helix-AGI/core/affect_field.py",
+      "syntaxOk": true,
+      "kind": "class",
+      "symbol": "AffectField",
+      "lineno": 258
+    },
+    {
+      "module": "auxiliary_llm.py",
+      "relativePath": "yaz_workspace/tools/ingested/Helix-AGI/core/auxiliary_llm.py",
+      "syntaxOk": true,
+      "kind": "class",
+      "symbol": "AuxiliaryLLM",
+      "lineno": 74
+    },
+    {
+      "module": "belief_cosmology.py",
+      "relativePath": "yaz_workspace/tools/ingested/Helix-AGI/core/belief_cosmology.py",
+      "syntaxOk": true,
+      "kind": "class",
+      "symbol": "GalaxyCenter",
+      "lineno": 156
+    },
+    {
+      "module": "belief_cosmology.py",
+      "relativePath": "yaz_workspace/tools/ingested/Helix-AGI/core/belief_cosmology.py",
+      "syntaxOk": true,
+      "kind": "class",
+      "symbol": "GalaxyMap",
+      "lineno": 192
+    },
+    {
+      "module": "co_occurrence_hook.py",
+      "relativePath": "yaz_workspace/tools/ingested/Helix-AGI/core/co_occurrence_hook.py",
+      "syntaxOk": true,
+      "kind": "class",
+      "symbol": "CoOccurrenceTracker",
+      "lineno": 53
+    },
+    {
+      "module": "cognitive_space.py",
+      "relativePath": "yaz_workspace/tools/ingested/Helix-AGI/core/cognitive_space.py",
+      "syntaxOk": true,
+      "kind": "class",
+      "symbol": "CognitiveProjection",
+      "lineno": 75
+    },
+    {
+      "module": "cognitive_space.py",
+      "relativePath": "yaz_workspace/tools/ingested/Helix-AGI/core/cognitive_space.py",
+      "syntaxOk": true,
+      "kind": "class",
+      "symbol": "GravityField",
+      "lineno": 180
+    },
+    {
+      "module": "cognitive_space.py",
+      "relativePath": "yaz_workspace/tools/ingested/Helix-AGI/core/cognitive_space.py",
+      "syntaxOk": true,
+      "kind": "class",
+      "symbol": "CognitiveSpace",
+      "lineno": 300
+    },
+    {
+      "module": "cognitive_space.py",
+      "relativePath": "yaz_workspace/tools/ingested/Helix-AGI/core/cognitive_space.py",
+      "syntaxOk": true,
+      "kind": "class",
+      "symbol": "InteractionEngine",
+      "lineno": 1683
+    },
+    {
+      "module": "concept_extractor.py",
+      "relativePath": "yaz_workspace/tools/ingested/Helix-AGI/core/concept_extractor.py",
+      "syntaxOk": true,
+      "kind": "class",
+      "symbol": "ConceptExtractor",
+      "lineno": 29
+    },
+    {
+      "module": "concept_reranker.py",
+      "relativePath": "yaz_workspace/tools/ingested/Helix-AGI/core/concept_reranker.py",
+      "syntaxOk": true,
+      "kind": "class",
+      "symbol": "ConceptReranker",
+      "lineno": 46
+    },
+    {
+      "module": "context_compressor.py",
+      "relativePath": "yaz_workspace/tools/ingested/Helix-AGI/core/context_compressor.py",
+      "syntaxOk": true,
+      "kind": "class",
+      "symbol": "ContextCompressor",
+      "lineno": 90
+    },
+    {
+      "module": "curator.py",
+      "relativePath": "yaz_workspace/tools/ingested/Helix-AGI/core/curator.py",
+      "syntaxOk": true,
+      "kind": "class",
+      "symbol": "Curator",
+      "lineno": 37
+    },
+    {
+      "module": "dual_pulse_loop.py",
+      "relativePath": "yaz_workspace/tools/ingested/Helix-AGI/core/dual_pulse_loop.py",
+      "syntaxOk": true,
+      "kind": "class",
+      "symbol": "DualPulseLoop",
+      "lineno": 54
+    },
+    {
+      "module": "gguf_manager.py",
+      "relativePath": "yaz_workspace/tools/ingested/Helix-AGI/core/gguf_manager.py",
+      "syntaxOk": true,
+      "kind": "class",
+      "symbol": "GGUFManager",
+      "lineno": 30
+    }
+  ],
+  "totalSnippets": 389,
+  "snippets": [
+    {
+      "module": "FibonacciEngine.py",
+      "relativePath": "yaz_workspace/FibonacciEngine.py",
+      "kind": "class",
+      "symbol": "FibonacciEngine",
+      "lineno": 1,
+      "excerpt": [
+        {
+          "lineNumber": 1,
+          "text": "class FibonacciEngine:"
+        },
+        {
+          "lineNumber": 2,
+          "text": "    def calculate_fibonacci(self, n):"
+        },
+        {
+          "lineNumber": 3,
+          "text": "        if n <= 0:"
+        },
+        {
+          "lineNumber": 4,
+          "text": "            return \"Input should be a positive integer\""
+        }
+      ]
+    },
+    {
+      "module": "seed_builder.py",
+      "relativePath": "yaz_workspace/tools/ingested/Helix-AGI/bootstrap/seed_builder.py",
+      "kind": "class",
+      "symbol": "BootstrapContext",
+      "lineno": 128,
+      "excerpt": [
+        {
+          "lineNumber": 125,
+          "text": ""
+        },
+        {
+          "lineNumber": 126,
+          "text": ""
+        },
+        {
+          "lineNumber": 127,
+          "text": "@dataclass(frozen=True)"
+        },
+        {
+          "lineNumber": 128,
+          "text": "class BootstrapContext:"
+        },
+        {
+          "lineNumber": 129,
+          "text": "    agent_name: str"
+        },
+        {
+          "lineNumber": 130,
+          "text": "    creator_name: str"
+        },
+        {
+          "lineNumber": 131,
+          "text": "    profile: str"
+        }
+      ]
+    },
+    {
+      "module": "friction_damper.py",
+      "relativePath": "yaz_workspace/tools/ingested/Helix-AGI/brain/friction_damper.py",
+      "kind": "class",
+      "symbol": "FrictionDamper",
+      "lineno": 17,
+      "excerpt": [
+        {
+          "lineNumber": 14,
+          "text": "logger = logging.getLogger(\"helix.brain.friction_damper\")"
+        },
+        {
+          "lineNumber": 15,
+          "text": ""
+        },
+        {
+          "lineNumber": 16,
+          "text": ""
+        },
+        {
+          "lineNumber": 17,
+          "text": "class FrictionDamper:"
+        },
+        {
+          "lineNumber": 18,
+          "text": "    \"\"\"Models a friction damper for moderating system operational friction."
+        },
+        {
+          "lineNumber": 19,
+          "text": ""
+        },
+        {
+          "lineNumber": 20,
+          "text": "    Parameters:"
+        }
+      ]
+    },
+    {
+      "module": "sensory_cortex.py",
+      "relativePath": "yaz_workspace/tools/ingested/Helix-AGI/brain/sensory_cortex.py",
+      "kind": "class",
+      "symbol": "SensoryCortex",
+      "lineno": 47,
+      "excerpt": [
+        {
+          "lineNumber": 44,
+          "text": "_VISUAL_MEMORY_SIZE = 10"
+        },
+        {
+          "lineNumber": 45,
+          "text": ""
+        },
+        {
+          "lineNumber": 46,
+          "text": ""
+        },
+        {
+          "lineNumber": 47,
+          "text": "class SensoryCortex:"
+        },
+        {
+          "lineNumber": 48,
+          "text": "    \"\"\"Subconscious visual perception — processes camera input through"
+        },
+        {
+          "lineNumber": 49,
+          "text": "    a local VL model (Gemma3 4B via Ollama) before it reaches consciousness."
+        },
+        {
+          "lineNumber": 50,
+          "text": ""
+        }
+      ]
+    },
+    {
+      "module": "stability_sentinel.py",
+      "relativePath": "yaz_workspace/tools/ingested/Helix-AGI/brain/stability_sentinel.py",
+      "kind": "class",
+      "symbol": "StabilitySentinel",
+      "lineno": 34,
+      "excerpt": [
+        {
+          "lineNumber": 31,
+          "text": "logger = logging.getLogger(\"helix.brain.sentinel\")"
+        },
+        {
+          "lineNumber": 32,
+          "text": ""
+        },
+        {
+          "lineNumber": 33,
+          "text": ""
+        },
+        {
+          "lineNumber": 34,
+          "text": "class StabilitySentinel:"
+        },
+        {
+          "lineNumber": 35,
+          "text": "    \"\"\"Deep subconscious stability monitor."
+        },
+        {
+          "lineNumber": 36,
+          "text": ""
+        },
+        {
+          "lineNumber": 37,
+          "text": "    Runs as a daemon thread, periodically probing system health and"
+        }
+      ]
+    },
+    {
+      "module": "vision_cortex.py",
+      "relativePath": "yaz_workspace/tools/ingested/Helix-AGI/brain/vision_cortex.py",
+      "kind": "class",
+      "symbol": "VisionCortex",
+      "lineno": 46,
+      "excerpt": [
+        {
+          "lineNumber": 43,
+          "text": "_VISUAL_MEMORY_SIZE = 10"
+        },
+        {
+          "lineNumber": 44,
+          "text": ""
+        },
+        {
+          "lineNumber": 45,
+          "text": ""
+        },
+        {
+          "lineNumber": 46,
+          "text": "class VisionCortex:"
+        },
+        {
+          "lineNumber": 47,
+          "text": "    \"\"\"Subconscious visual perception — processes camera input through"
+        },
+        {
+          "lineNumber": 48,
+          "text": "    a local VL model (Gemma3 4B via Ollama) before it reaches consciousness."
+        },
+        {
+          "lineNumber": 49,
+          "text": ""
+        }
+      ]
+    },
+    {
+      "module": "discord_bot.py",
+      "relativePath": "yaz_workspace/tools/ingested/Helix-AGI/comms/discord_bot.py",
+      "kind": "class",
+      "symbol": "HelixDiscordBot",
+      "lineno": 27,
+      "excerpt": [
+        {
+          "lineNumber": 24,
+          "text": "logger = logging.getLogger(\"helix.comms.discord\")"
+        },
+        {
+          "lineNumber": 25,
+          "text": ""
+        },
+        {
+          "lineNumber": 26,
+          "text": ""
+        },
+        {
+          "lineNumber": 27,
+          "text": "class HelixDiscordBot:"
+        },
+        {
+          "lineNumber": 28,
+          "text": "    \"\"\"Discord bot — runs in a background thread."
+        },
+        {
+          "lineNumber": 29,
+          "text": ""
+        },
+        {
+          "lineNumber": 30,
+          "text": "    Architecture mirrors HelixTelegramBot:"
+        }
+      ]
+    },
+    {
+      "module": "telegram_bot.py",
+      "relativePath": "yaz_workspace/tools/ingested/Helix-AGI/comms/telegram_bot.py",
+      "kind": "class",
+      "symbol": "HelixTelegramBot",
+      "lineno": 22,
+      "excerpt": [
+        {
+          "lineNumber": 19,
+          "text": "logger = logging.getLogger(\"helix.comms.telegram\")"
+        },
+        {
+          "lineNumber": 20,
+          "text": ""
+        },
+        {
+          "lineNumber": 21,
+          "text": ""
+        },
+        {
+          "lineNumber": 22,
+          "text": "class HelixTelegramBot:"
+        },
+        {
+          "lineNumber": 23,
+          "text": "    \"\"\"Telegram bot — runs in a background thread."
+        },
+        {
+          "lineNumber": 24,
+          "text": ""
+        },
+        {
+          "lineNumber": 25,
+          "text": "    Anyone can message the agent. No user restrictions."
+        }
+      ]
+    },
+    {
+      "module": "affect_field.py",
+      "relativePath": "yaz_workspace/tools/ingested/Helix-AGI/core/affect_field.py",
+      "kind": "class",
+      "symbol": "WavePacket",
+      "lineno": 101,
+      "excerpt": [
+        {
+          "lineNumber": 98,
+          "text": "# ═════════════════════════════════════════════════════════════════════"
+        },
+        {
+          "lineNumber": 99,
+          "text": ""
+        },
+        {
+          "lineNumber": 100,
+          "text": "@dataclass"
+        },
+        {
+          "lineNumber": 101,
+          "text": "class WavePacket:"
+        },
+        {
+          "lineNumber": 102,
+          "text": "    \"\"\"A single emotional trace in 8D Plutchik affect-space."
+        },
+        {
+          "lineNumber": 103,
+          "text": ""
+        },
+        {
+          "lineNumber": 104,
+          "text": "    Represents an emotional moment that diffuses and decays over time,"
+        }
+      ]
+    },
+    {
+      "module": "affect_field.py",
+      "relativePath": "yaz_workspace/tools/ingested/Helix-AGI/core/affect_field.py",
+      "kind": "class",
+      "symbol": "InterferenceResult",
+      "lineno": 233,
+      "excerpt": [
+        {
+          "lineNumber": 230,
+          "text": "# ═════════════════════════════════════════════════════════════════════"
+        },
+        {
+          "lineNumber": 231,
+          "text": ""
+        },
+        {
+          "lineNumber": 232,
+          "text": "@dataclass"
+        },
+        {
+          "lineNumber": 233,
+          "text": "class InterferenceResult:"
+        },
+        {
+          "lineNumber": 234,
+          "text": "    \"\"\"Result of sampling the emotional field."
+        },
+        {
+          "lineNumber": 235,
+          "text": ""
+        },
+        {
+          "lineNumber": 236,
+          "text": "    Attributes:"
+        }
+      ]
+    },
+    {
+      "module": "affect_field.py",
+      "relativePath": "yaz_workspace/tools/ingested/Helix-AGI/core/affect_field.py",
+      "kind": "class",
+      "symbol": "AffectField",
+      "lineno": 258,
+      "excerpt": [
+        {
+          "lineNumber": 255,
+          "text": "# Affect Field"
+        },
+        {
+          "lineNumber": 256,
+          "text": "# ═════════════════════════════════════════════════════════════════════"
+        },
+        {
+          "lineNumber": 257,
+          "text": ""
+        },
+        {
+          "lineNumber": 258,
+          "text": "class AffectField:"
+        },
+        {
+          "lineNumber": 259,
+          "text": "    \"\"\"Manages wave packets in 8D Plutchik affect-space."
+        },
+        {
+          "lineNumber": 260,
+          "text": ""
+        },
+        {
+          "lineNumber": 261,
+          "text": "    The field maintains a collection of emotional traces that diffuse,"
+        }
+      ]
+    },
+    {
+      "module": "auxiliary_llm.py",
+      "relativePath": "yaz_workspace/tools/ingested/Helix-AGI/core/auxiliary_llm.py",
+      "kind": "class",
+      "symbol": "AuxiliaryLLM",
+      "lineno": 74,
+      "excerpt": [
+        {
+          "lineNumber": 71,
+          "text": "_client_lock = threading.RLock()"
+        },
+        {
+          "lineNumber": 72,
+          "text": ""
+        },
+        {
+          "lineNumber": 73,
+          "text": ""
+        },
+        {
+          "lineNumber": 74,
+          "text": "class AuxiliaryLLM:"
+        },
+        {
+          "lineNumber": 75,
+          "text": "    \"\"\"Lightweight LLM client for subconscious tasks."
+        },
+        {
+          "lineNumber": 76,
+          "text": ""
+        },
+        {
+          "lineNumber": 77,
+          "text": "    Keeps a separate session from the main consciousness so the primary"
+        }
+      ]
+    },
+    {
+      "module": "belief_cosmology.py",
+      "relativePath": "yaz_workspace/tools/ingested/Helix-AGI/core/belief_cosmology.py",
+      "kind": "class",
+      "symbol": "GalaxyCenter",
+      "lineno": 156,
+      "excerpt": [
+        {
+          "lineNumber": 153,
+          "text": "# score each cluster → pull from the highest-scoring one(s)."
+        },
+        {
+          "lineNumber": 154,
+          "text": "# ═══════════════════════════════════════════════════════════════════════"
+        },
+        {
+          "lineNumber": 155,
+          "text": ""
+        },
+        {
+          "lineNumber": 156,
+          "text": "class GalaxyCenter:"
+        },
+        {
+          "lineNumber": 157,
+          "text": "    \"\"\"A cluster centroid in the 8D belief space (\"galaxy\" in code)."
+        },
+        {
+          "lineNumber": 158,
+          "text": ""
+        },
+        {
+          "lineNumber": 159,
+          "text": "    Built from a Layer 2 belief (people, concepts, skills, desires)"
+        }
+      ]
+    },
+    {
+      "module": "belief_cosmology.py",
+      "relativePath": "yaz_workspace/tools/ingested/Helix-AGI/core/belief_cosmology.py",
+      "kind": "class",
+      "symbol": "GalaxyMap",
+      "lineno": 192,
+      "excerpt": [
+        {
+          "lineNumber": 189,
+          "text": "        )"
+        },
+        {
+          "lineNumber": 190,
+          "text": ""
+        },
+        {
+          "lineNumber": 191,
+          "text": ""
+        },
+        {
+          "lineNumber": 192,
+          "text": "class GalaxyMap:"
+        },
+        {
+          "lineNumber": 193,
+          "text": "    \"\"\"Map of cluster centroids in the 8D belief space (\"galaxy map\" in code)."
+        },
+        {
+          "lineNumber": 194,
+          "text": ""
+        },
+        {
+          "lineNumber": 195,
+          "text": "    Built from Layer 2 beliefs and the full belief store. Each Layer 2"
+        }
+      ]
+    },
+    {
+      "module": "co_occurrence_hook.py",
+      "relativePath": "yaz_workspace/tools/ingested/Helix-AGI/core/co_occurrence_hook.py",
+      "kind": "class",
+      "symbol": "CoOccurrenceTracker",
+      "lineno": 53,
+      "excerpt": [
+        {
+          "lineNumber": 50,
+          "text": "PERSIST_INTERVAL = 50"
+        },
+        {
+          "lineNumber": 51,
+          "text": ""
+        },
+        {
+          "lineNumber": 52,
+          "text": ""
+        },
+        {
+          "lineNumber": 53,
+          "text": "class CoOccurrenceTracker:"
+        },
+        {
+          "lineNumber": 54,
+          "text": "    \"\"\"Passively tracks belief co-injection patterns."
+        },
+        {
+          "lineNumber": 55,
+          "text": ""
+        },
+        {
+          "lineNumber": 56,
+          "text": "    Accumulates pairwise co-occurrence counts every pulse. The nightly"
+        }
+      ]
+    },
+    {
+      "module": "cognitive_space.py",
+      "relativePath": "yaz_workspace/tools/ingested/Helix-AGI/core/cognitive_space.py",
+      "kind": "class",
+      "symbol": "CognitiveProjection",
+      "lineno": 75,
+      "excerpt": [
+        {
+          "lineNumber": 72,
+          "text": "# Cognitive Projection — embedding_dim → 8D"
+        },
+        {
+          "lineNumber": 73,
+          "text": "# ═══════════════════════════════════════════════════════════════════════"
+        },
+        {
+          "lineNumber": 74,
+          "text": ""
+        },
+        {
+          "lineNumber": 75,
+          "text": "class CognitiveProjection:"
+        },
+        {
+          "lineNumber": 76,
+          "text": "    \"\"\"Project high-dimensional embeddings to 8D cognitive space."
+        },
+        {
+          "lineNumber": 77,
+          "text": ""
+        },
+        {
+          "lineNumber": 78,
+          "text": "    Uses a random orthogonal projection matrix (Johnson-Lindenstrauss):"
+        }
+      ]
+    },
+    {
+      "module": "cognitive_space.py",
+      "relativePath": "yaz_workspace/tools/ingested/Helix-AGI/core/cognitive_space.py",
+      "kind": "class",
+      "symbol": "GravityField",
+      "lineno": 180,
+      "excerpt": [
+        {
+          "lineNumber": 177,
+          "text": "# Gravity Field — 512-anchor grid for field computation"
+        },
+        {
+          "lineNumber": 178,
+          "text": "# ═══════════════════════════════════════════════════════════════════════"
+        },
+        {
+          "lineNumber": 179,
+          "text": ""
+        },
+        {
+          "lineNumber": 180,
+          "text": "class GravityField:"
+        },
+        {
+          "lineNumber": 181,
+          "text": "    \"\"\"Density estimator over 8D cognitive space (\"gravity field\" in code)."
+        },
+        {
+          "lineNumber": 182,
+          "text": ""
+        },
+        {
+          "lineNumber": 183,
+          "text": "    Uses N_ANCHORS fixed anchor points distributed across the space."
+        }
+      ]
+    },
+    {
+      "module": "cognitive_space.py",
+      "relativePath": "yaz_workspace/tools/ingested/Helix-AGI/core/cognitive_space.py",
+      "kind": "class",
+      "symbol": "CognitiveSpace",
+      "lineno": 300,
+      "excerpt": [
+        {
+          "lineNumber": 297,
+          "text": "# Cognitive Space — the unified manifold"
+        },
+        {
+          "lineNumber": 298,
+          "text": "# ═══════════════════════════════════════════════════════════════════════"
+        },
+        {
+          "lineNumber": 299,
+          "text": ""
+        },
+        {
+          "lineNumber": 300,
+          "text": "class CognitiveSpace:"
+        },
+        {
+          "lineNumber": 301,
+          "text": "    \"\"\"8D spatial manifold for beliefs and memories."
+        },
+        {
+          "lineNumber": 302,
+          "text": ""
+        },
+        {
+          "lineNumber": 303,
+          "text": "    Every belief and memory gets a permanent position in 8D space."
+        }
+      ]
+    },
+    {
+      "module": "cognitive_space.py",
+      "relativePath": "yaz_workspace/tools/ingested/Helix-AGI/core/cognitive_space.py",
+      "kind": "class",
+      "symbol": "InteractionEngine",
+      "lineno": 1683,
+      "excerpt": [
+        {
+          "lineNumber": 1680,
+          "text": "TOOL_COOLDOWN_PULSES = 5"
+        },
+        {
+          "lineNumber": 1681,
+          "text": ""
+        },
+        {
+          "lineNumber": 1682,
+          "text": ""
+        },
+        {
+          "lineNumber": 1683,
+          "text": "class InteractionEngine:"
+        },
+        {
+          "lineNumber": 1684,
+          "text": "    \"\"\"Converts manifold interaction potentials into actionable tool affordances."
+        },
+        {
+          "lineNumber": 1685,
+          "text": ""
+        },
+        {
+          "lineNumber": 1686,
+          "text": "    Sits between the CognitiveSpace (physics) and the ActionAgent (execution)."
+        }
+      ]
+    },
+    {
+      "module": "concept_extractor.py",
+      "relativePath": "yaz_workspace/tools/ingested/Helix-AGI/core/concept_extractor.py",
+      "kind": "class",
+      "symbol": "ConceptExtractor",
+      "lineno": 29,
+      "excerpt": [
+        {
+          "lineNumber": 26,
+          "text": "logger = logging.getLogger(\"helix.core.concept_extractor\")"
+        },
+        {
+          "lineNumber": 27,
+          "text": ""
+        },
+        {
+          "lineNumber": 28,
+          "text": ""
+        },
+        {
+          "lineNumber": 29,
+          "text": "class ConceptExtractor:"
+        },
+        {
+          "lineNumber": 30,
+          "text": "    \"\"\"Extracts key concepts from natural language text."
+        },
+        {
+          "lineNumber": 31,
+          "text": ""
+        },
+        {
+          "lineNumber": 32,
+          "text": "    Uses RAKE-style scoring (Rapid Automatic Keyword Extraction):"
+        }
+      ]
+    },
+    {
+      "module": "concept_reranker.py",
+      "relativePath": "yaz_workspace/tools/ingested/Helix-AGI/core/concept_reranker.py",
+      "kind": "class",
+      "symbol": "ConceptReranker",
+      "lineno": 46,
+      "excerpt": [
+        {
+          "lineNumber": 43,
+          "text": "DEFAULT_MODEL = \"cross-encoder/ms-marco-MiniLM-L-6-v2\""
+        },
+        {
+          "lineNumber": 44,
+          "text": ""
+        },
+        {
+          "lineNumber": 45,
+          "text": ""
+        },
+        {
+          "lineNumber": 46,
+          "text": "class ConceptReranker:"
+        },
+        {
+          "lineNumber": 47,
+          "text": "    \"\"\"Cross-encoder reranker with lazy load and graceful fallback.\"\"\""
+        },
+        {
+          "lineNumber": 48,
+          "text": ""
+        },
+        {
+          "lineNumber": 49,
+          "text": "    def __init__("
+        }
+      ]
+    },
+    {
+      "module": "context_compressor.py",
+      "relativePath": "yaz_workspace/tools/ingested/Helix-AGI/core/context_compressor.py",
+      "kind": "class",
+      "symbol": "ContextCompressor",
+      "lineno": 90,
+      "excerpt": [
+        {
+          "lineNumber": 87,
+          "text": "    return str(content)"
+        },
+        {
+          "lineNumber": 88,
+          "text": ""
+        },
+        {
+          "lineNumber": 89,
+          "text": ""
+        },
+        {
+          "lineNumber": 90,
+          "text": "class ContextCompressor:"
+        },
+        {
+          "lineNumber": 91,
+          "text": "    \"\"\"Rolling context compressor for Helix's Gemini chat sessions."
+        },
+        {
+          "lineNumber": 92,
+          "text": ""
+        },
+        {
+          "lineNumber": 93,
+          "text": "    Monitors token count and focus drift, triggering compression when"
+        }
+      ]
+    },
+    {
+      "module": "curator.py",
+      "relativePath": "yaz_workspace/tools/ingested/Helix-AGI/core/curator.py",
+      "kind": "class",
+      "symbol": "Curator",
+      "lineno": 37,
+      "excerpt": [
+        {
+          "lineNumber": 34,
+          "text": "import warnings"
+        },
+        {
+          "lineNumber": 35,
+          "text": "warnings.filterwarnings(\"ignore\", category=UserWarning)"
+        },
+        {
+          "lineNumber": 36,
+          "text": ""
+        },
+        {
+          "lineNumber": 37,
+          "text": "class Curator:"
+        },
+        {
+          "lineNumber": 38,
+          "text": "    \"\"\"The background belief crystallization and memory consolidation system."
+        },
+        {
+          "lineNumber": 39,
+          "text": "    "
+        },
+        {
+          "lineNumber": 40,
+          "text": "    Triggered by the pulse_loop during dormancy, it spawns a background thread"
+        }
+      ]
+    },
+    {
+      "module": "dual_pulse_loop.py",
+      "relativePath": "yaz_workspace/tools/ingested/Helix-AGI/core/dual_pulse_loop.py",
+      "kind": "class",
+      "symbol": "DualPulseLoop",
+      "lineno": 54,
+      "excerpt": [
+        {
+          "lineNumber": 51,
+          "text": "    return datetime.now().astimezone().isoformat(timespec=\"seconds\")"
+        },
+        {
+          "lineNumber": 52,
+          "text": ""
+        },
+        {
+          "lineNumber": 53,
+          "text": ""
+        },
+        {
+          "lineNumber": 54,
+          "text": "class DualPulseLoop:"
+        },
+        {
+          "lineNumber": 55,
+          "text": "    \"\"\"Split-consciousness loop: local reasoner + API actuator."
+        },
+        {
+          "lineNumber": 56,
+          "text": ""
+        },
+        {
+          "lineNumber": 57,
+          "text": "    The local model thinks in pure monologue."
+        }
+      ]
+    },
+    {
+      "module": "gguf_manager.py",
+      "relativePath": "yaz_workspace/tools/ingested/Helix-AGI/core/gguf_manager.py",
+      "kind": "class",
+      "symbol": "GGUFManager",
+      "lineno": 30,
+      "excerpt": [
+        {
+          "lineNumber": 27,
+          "text": ""
+        },
+        {
+          "lineNumber": 28,
+          "text": "logger = logging.getLogger(__name__)"
+        },
+        {
+          "lineNumber": 29,
+          "text": ""
+        },
+        {
+          "lineNumber": 30,
+          "text": "class GGUFManager:"
+        },
+        {
+          "lineNumber": 31,
+          "text": "    def __init__(self, models_dir: str):"
+        },
+        {
+          "lineNumber": 32,
+          "text": "        self.models_dir = models_dir"
+        },
+        {
+          "lineNumber": 33,
+          "text": "        self.models: Dict[str, Any] = {}"
+        }
+      ]
+    }
+  ]
+}

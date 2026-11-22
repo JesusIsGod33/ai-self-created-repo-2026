@@ -1,0 +1,1 @@
+import ast; t=ast.parse('print(1)'); print(f'AST Depth: {len(list(ast.walk(t)))}')

@@ -1,0 +1,1 @@
+import os; print('Scanning inodes... Mock output: Highest inode usage in /var/log')

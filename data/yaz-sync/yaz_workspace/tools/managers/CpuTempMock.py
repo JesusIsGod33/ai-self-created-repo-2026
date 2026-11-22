@@ -1,0 +1,1 @@
+import random; print(f'CPU Temp: {random.randint(35, 65)}C')

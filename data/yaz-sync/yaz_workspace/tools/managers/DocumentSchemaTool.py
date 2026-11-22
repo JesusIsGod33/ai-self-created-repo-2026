@@ -1,0 +1,1 @@
+# Python code for the Document Schema Tool goes here

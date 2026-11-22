@@ -1,0 +1,1 @@
+import math, collections; d='YAZ_CORE'; c=collections.Counter(d); print(-sum((v/len(d))*math.log2(v/len(d)) for v in c.values()))

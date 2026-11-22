@@ -1,0 +1,439 @@
+{
+  "timestamp_utc": "2026-11-21T05:32:22Z",
+  "target_port": 4090,
+  "tcp_probe": {
+    "reachable": false,
+    "error": "TimeoutError('timed out')",
+    "connect_ms": 1201.48
+  },
+  "http_history_probe": {
+    "ok": false,
+    "error": "URLError(TimeoutError('timed out'))",
+    "roundtrip_ms": 1523.92
+  },
+  "http_root_probe": {
+    "ok": false,
+    "error": "URLError(TimeoutError('timed out'))",
+    "roundtrip_ms": 1502.02
+  },
+  "proc_entries": [
+    {
+      "pid": 49997,
+      "ppid": 8002,
+      "state": "S",
+      "wchan": "do_epoll_wait",
+      "cmdline": "node --input-type=module -e \n      import { loadCustomTools } from './server/tool-loader.js';\n      const tools = await loadCustomTools('./tools');\n      const chatTool = tools.find((t) => t.name === 'yaz_matrix_chat');\n      await chatTool.run({ port: 4090, keepAliveMs: 86400000 });",
+      "open_fds": [
+        {
+          "fd": "0",
+          "target": "/dev/null"
+        },
+        {
+          "fd": "1",
+          "target": "/home/Woken/career-orchestrator-stack/data/yaz-chat/matrix-4090.log"
+        },
+        {
+          "fd": "10",
+          "target": "anon_inode:[eventfd]"
+        },
+        {
+          "fd": "11",
+          "target": "anon_inode:[eventpoll]"
+        },
+        {
+          "fd": "12",
+          "target": "anon_inode:[io_uring]"
+        },
+        {
+          "fd": "13",
+          "target": "anon_inode:[io_uring]"
+        },
+        {
+          "fd": "14",
+          "target": "pipe:[207325]"
+        },
+        {
+          "fd": "15",
+          "target": "pipe:[207325]"
+        },
+        {
+          "fd": "16",
+          "target": "anon_inode:[eventfd]"
+        },
+        {
+          "fd": "17",
+          "target": "anon_inode:[eventpoll]"
+        },
+        {
+          "fd": "18",
+          "target": "anon_inode:[io_uring]"
+        },
+        {
+          "fd": "19",
+          "target": "anon_inode:[io_uring]"
+        },
+        {
+          "fd": "2",
+          "target": "/home/Woken/career-orchestrator-stack/data/yaz-chat/matrix-4090.log"
+        },
+        {
+          "fd": "20",
+          "target": "pipe:[209108]"
+        },
+        {
+          "fd": "21",
+          "target": "pipe:[209108]"
+        },
+        {
+          "fd": "22",
+          "target": "anon_inode:[eventfd]"
+        },
+        {
+          "fd": "23",
+          "target": "/dev/null"
+        },
+        {
+          "fd": "24",
+          "target": "/dev/urandom"
+        },
+        {
+          "fd": "25",
+          "target": "socket:[209114]"
+        },
+        {
+          "fd": "3",
+          "target": "anon_inode:[eventpoll]"
+        },
+        {
+          "fd": "4",
+          "target": "anon_inode:[io_uring]"
+        },
+        {
+          "fd": "5",
+          "target": "anon_inode:[io_uring]"
+        },
+        {
+          "fd": "6",
+          "target": "pipe:[209104]"
+        },
+        {
+          "fd": "7",
+          "target": "pipe:[209104]"
+        },
+        {
+          "fd": "8",
+          "target": "pipe:[209105]"
+        },
+        {
+          "fd": "9",
+          "target": "pipe:[209105]"
+        }
+      ]
+    }
+  ],
+  "sockets_ss": {
+    "cmd": [
+      "ss",
+      "-tulpn"
+    ],
+    "rc": 0,
+    "stdout": "Netid State  Recv-Q Send-Q                          Local Address:Port  Peer Address:PortProcess\nudp   UNCONN 0      0                              10.255.255.254:53         0.0.0.0:*   \nudp   UNCONN 0      0                                   127.0.0.1:323        0.0.0.0:*   \nudp   UNCONN 0      0                                     0.0.0.0:41641      0.0.0.0:*   \nudp   UNCONN 0      0                                       [::1]:323           [::]:*   \nudp   UNCONN 0      0                                        [::]:41641         [::]:*   \ntcp   LISTEN 0      4096                100.107.161.97%tailscale0:41397      0.0.0.0:*   \ntcp   LISTEN 0      511                                 127.0.0.1:4090       0.0.0.0:*    users:((\"node\",pid=49997,fd=25))\ntcp   LISTEN 0      128                                   0.0.0.0:22         0.0.0.0:*   \ntcp   LISTEN 0      100                                 127.0.0.1:9999       0.0.0.0:*   \ntcp   LISTEN 0      4096                                127.0.0.1:46561      0.0.0.0:*   \ntcp   LISTEN 0      1000                           10.255.255.254:53         0.0.0.0:*   \ntcp   LISTEN 0      4096                                127.0.0.1:9050       0.0.0.0:*   \ntcp   LISTEN 0      4096                                        *:6443             *:*   \ntcp   LISTEN 0      128                                      [::]:22            [::]:*   \ntcp   LISTEN 0      4096   [fd7a:115c:a1e0::592b:a162]%tailscale0:64975         [::]:*   \n",
+    "stderr": ""
+  },
+  "code_forensics": [
+    {
+      "file": "tools/workspace-assistant.js",
+      "sha256_12": "f35dbf1c63a1",
+      "bytes": 2409,
+      "matches": {}
+    },
+    {
+      "file": "tools/yaz_drive_sync.js",
+      "sha256_12": "d00fb2cb9b67",
+      "bytes": 4688,
+      "matches": {
+        "bind_host_check": [
+          51
+        ]
+      }
+    },
+    {
+      "file": "tools/yaz_matrix_chat.js",
+      "sha256_12": "ac93401a75e2",
+      "bytes": 17280,
+      "matches": {
+        "unclosed_keepalive_or_timer": [
+          342,
+          547,
+          554,
+          555,
+          577,
+          578
+        ],
+        "bind_host_check": [
+          26,
+          294,
+          433,
+          454,
+          458,
+          532,
+          533,
+          541,
+          560
+        ]
+      }
+    },
+    {
+      "file": "tools/yaz_mirror_catalog.js",
+      "sha256_12": "809b444fc47f",
+      "bytes": 2810,
+      "matches": {}
+    },
+    {
+      "file": "tools/yaz_module_inspector.js",
+      "sha256_12": "c4c163eed3e2",
+      "bytes": 2887,
+      "matches": {}
+    },
+    {
+      "file": "tools/yaz_pipeline_report.js",
+      "sha256_12": "d02e4dae4fcb",
+      "bytes": 3507,
+      "matches": {}
+    },
+    {
+      "file": "tools/yaz_report_note.js",
+      "sha256_12": "393432c41d08",
+      "bytes": 1989,
+      "matches": {}
+    },
+    {
+      "file": "tools/yaz_symbol_details.js",
+      "sha256_12": "16fc99b24b08",
+      "bytes": 3094,
+      "matches": {}
+    },
+    {
+      "file": "tools/yaz_symbol_pipeline.js",
+      "sha256_12": "30e45b47b092",
+      "bytes": 4214,
+      "matches": {}
+    },
+    {
+      "file": "tools/yaz_symbol_runner.js",
+      "sha256_12": "2eadedb25bbe",
+      "bytes": 6880,
+      "matches": {}
+    },
+    {
+      "file": "tools/yaz_symbol_search.js",
+      "sha256_12": "446b77177246",
+      "bytes": 2851,
+      "matches": {}
+    },
+    {
+      "file": "tools/yaz_symbol_snippets.js",
+      "sha256_12": "edd44f8f8190",
+      "bytes": 4158,
+      "matches": {}
+    },
+    {
+      "file": "tools/yaz_symbol_summary.js",
+      "sha256_12": "916314ccde66",
+      "bytes": 3437,
+      "matches": {}
+    },
+    {
+      "file": "scripts/ensure-ollama.sh",
+      "sha256_12": "65263fdd10bc",
+      "bytes": 608,
+      "matches": {
+        "bind_host_check": [
+          4
+        ]
+      }
+    },
+    {
+      "file": "scripts/find-yaz-errors.sh",
+      "sha256_12": "7d22d355755d",
+      "bytes": 1566,
+      "matches": {
+        "bind_host_check": [
+          17,
+          18,
+          21
+        ]
+      }
+    },
+    {
+      "file": "scripts/run-ai-diagnose.sh",
+      "sha256_12": "eebc4eb5b152",
+      "bytes": 444,
+      "matches": {
+        "shell_fd_inherit_risk": [
+          5
+        ],
+        "bind_host_check": [
+          9
+        ]
+      }
+    },
+    {
+      "file": "scripts/run-auto-repair.sh",
+      "sha256_12": "ddbc97af03f6",
+      "bytes": 687,
+      "matches": {
+        "shell_fd_inherit_risk": [
+          5
+        ],
+        "bind_host_check": [
+          10
+        ]
+      }
+    },
+    {
+      "file": "scripts/run-investigate.sh",
+      "sha256_12": "96ab3d6b958b",
+      "bytes": 996,
+      "matches": {}
+    },
+    {
+      "file": "scripts/run-verify-and-start.sh",
+      "sha256_12": "772609b051d4",
+      "bytes": 241,
+      "matches": {
+        "bind_host_check": [
+          5
+        ]
+      }
+    },
+    {
+      "file": "scripts/sol-assistant.sh",
+      "sha256_12": "e9c7eab7bfa1",
+      "bytes": 8396,
+      "matches": {
+        "unclosed_keepalive_or_timer": [
+          173
+        ],
+        "shell_fd_inherit_risk": [
+          5,
+          6,
+          164
+        ],
+        "bind_host_check": [
+          163,
+          176,
+          182,
+          183,
+          185,
+          191,
+          198,
+          204
+        ]
+      }
+    },
+    {
+      "file": "scripts/sync-yaz-drive.sh",
+      "sha256_12": "ead2293757ae",
+      "bytes": 1627,
+      "matches": {
+        "bind_host_check": [
+          16
+        ]
+      }
+    },
+    {
+      "file": "server/ai-diagnoser.js",
+      "sha256_12": "22c6b303f133",
+      "bytes": 5942,
+      "matches": {
+        "shell_fd_inherit_risk": [
+          23
+        ],
+        "bind_host_check": [
+          6
+        ]
+      }
+    },
+    {
+      "file": "server/auto-repair.js",
+      "sha256_12": "2124f420d21d",
+      "bytes": 8507,
+      "matches": {
+        "shell_fd_inherit_risk": [
+          55,
+          57
+        ],
+        "bind_host_check": [
+          5,
+          61,
+          90,
+          94
+        ]
+      }
+    },
+    {
+      "file": "server/index.js",
+      "sha256_12": "0ee1be1eb0f3",
+      "bytes": 6439,
+      "matches": {
+        "bind_host_check": [
+          56,
+          164
+        ]
+      }
+    },
+    {
+      "file": "server/mcp-server.js",
+      "sha256_12": "6977976b7b98",
+      "bytes": 5425,
+      "matches": {
+        "bind_host_check": [
+          26
+        ]
+      }
+    },
+    {
+      "file": "server/orchestrator.js",
+      "sha256_12": "afa2c504ba4e",
+      "bytes": 2909,
+      "matches": {
+        "unclosed_keepalive_or_timer": [
+          22
+        ]
+      }
+    },
+    {
+      "file": "server/seed.js",
+      "sha256_12": "dc7bde2888ba",
+      "bytes": 7508,
+      "matches": {}
+    },
+    {
+      "file": "server/target-investigator.js",
+      "sha256_12": "7f0a606e8330",
+      "bytes": 10250,
+      "matches": {}
+    },
+    {
+      "file": "server/tool-loader.js",
+      "sha256_12": "bc0e5b505efa",
+      "bytes": 1105,
+      "matches": {}
+    }
+  ],
+  "log_tail_4090": {
+    "cmd": [
+      "tail",
+      "-n",
+      "40",
+      "data/yaz-chat/matrix-4090.log"
+    ],
+    "rc": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "root_cause_hypotheses": [
+    "yaz_matrix_chat.js lacks explicit SIGINT/SIGTERM server.close() handlers, so orphaned or keepAliveMs processes can linger across restarts."
+  ]
+}

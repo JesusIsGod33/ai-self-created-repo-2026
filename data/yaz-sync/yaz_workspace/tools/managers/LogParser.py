@@ -1,0 +1,1 @@
+import re, sys; file=sys.argv[1] if len(sys.argv)>1 else '/var/log/syslog'; print(f'Parsing {file}... Mock: Found 3 warnings.')

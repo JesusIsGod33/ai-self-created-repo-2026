@@ -1,0 +1,1 @@
+import random, string, sys; length=int(sys.argv[1]) if len(sys.argv)>1 else 32; chars=string.ascii_letters+string.digits+'!@#$%^&*()-_=+'; print('Pass:', ''.join(random.choice(chars) for _ in range(length)))

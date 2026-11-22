@@ -1,0 +1,1 @@
+print('Converted JSON stream to Columnar Parquet format (Mock).')

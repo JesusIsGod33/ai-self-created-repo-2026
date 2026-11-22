@@ -1,0 +1,43 @@
+{
+  "id": "repair-1795225810013",
+  "timestamp": "2026-11-21T01:50:10.013Z",
+  "plannerModel": "qwen2.5:1.5b-instruct",
+  "plan": {
+    "summary": "Timeout on GET /healthz or stale local environment",
+    "actions": [
+      "ensure_ollama_daemon",
+      "ensure_project_directories",
+      "ensure_executable_scripts",
+      "check_healthz_loopback",
+      "run_verify_all_suite"
+    ]
+  },
+  "executionResults": [
+    {
+      "action": "ensure_ollama_daemon",
+      "ok": true,
+      "detail": "Local Ollama daemon verified or started on 127.0.0.1:11434."
+    },
+    {
+      "action": "ensure_project_directories",
+      "ok": true,
+      "detail": "Verified required project and data directories."
+    },
+    {
+      "action": "ensure_executable_scripts",
+      "ok": true,
+      "detail": "Set executable permissions on 5 shell scripts."
+    },
+    {
+      "action": "check_healthz_loopback",
+      "ok": false,
+      "detail": "Healthz loopback check failed: spawnSync node ETIMEDOUT"
+    },
+    {
+      "action": "run_verify_all_suite",
+      "ok": false,
+      "detail": "verify-all failed: Error: Timeout on GET /healthz\n    at ClientRequest.<anonymous> (file:///home/Woken/career-orchestrator-stack/tests/verify-all.js:39:41)\n    at ClientRequest.emit (node:events:518:28)\n    at Socket.emitRequestTimeout (node:_http_client:840:9)\n    at Object.onceWrapper (node:events:632:28)\n    at Socket.emit (node:events:530:35)\n    at Socket._onTimeout (node:net:589:8)\n    at listOnTimeout (node:internal/timers:573:17)\n    at process.processTimers (node:internal/timers:514:7)"
+    }
+  ],
+  "allSucceeded": false
+}

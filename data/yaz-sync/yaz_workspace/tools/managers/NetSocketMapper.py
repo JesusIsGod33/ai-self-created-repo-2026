@@ -1,0 +1,1 @@
+import psutil; print([f'{c.laddr.ip}:{c.laddr.port}->{c.raddr[0]}:{c.raddr[1]}' for c in psutil.net_connections() if c.raddr])

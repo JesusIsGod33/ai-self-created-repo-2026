@@ -1,0 +1,73 @@
+{
+  "updatedAt": "2026-11-21T05:13:10.709Z",
+  "sourceAuditPath": "/home/Woken/career-orchestrator-stack/data/yaz-sync/symbol-audit.json",
+  "pattern": "AstRefactorPlanner",
+  "kind": "",
+  "totalMatchedModules": 1,
+  "modules": [
+    {
+      "name": "AstRefactorPlanner.py",
+      "relativePath": "yaz_workspace/tools/managers/AstRefactorPlanner.py",
+      "syntaxOk": true,
+      "syntaxError": null,
+      "matchedSymbolCount": 11,
+      "symbols": [
+        {
+          "kind": "class",
+          "name": "CoreEngine",
+          "lineno": 4
+        },
+        {
+          "kind": "class",
+          "name": "AstRefactorPlanner",
+          "lineno": 39
+        },
+        {
+          "kind": "def",
+          "name": "main",
+          "lineno": 66
+        },
+        {
+          "kind": "def",
+          "name": "__init__",
+          "lineno": 5
+        },
+        {
+          "kind": "def",
+          "name": "add_class_structure",
+          "lineno": 10
+        },
+        {
+          "kind": "def",
+          "name": "add_code_implementation",
+          "lineno": 18
+        },
+        {
+          "kind": "def",
+          "name": "add_test_case",
+          "lineno": 24
+        },
+        {
+          "kind": "def",
+          "name": "to_json",
+          "lineno": 32
+        },
+        {
+          "kind": "def",
+          "name": "__init__",
+          "lineno": 40
+        },
+        {
+          "kind": "def",
+          "name": "refactor_code",
+          "lineno": 43
+        },
+        {
+          "kind": "def",
+          "name": "plan_refactoring",
+          "lineno": 52
+        }
+      ]
+    }
+  ]
+}

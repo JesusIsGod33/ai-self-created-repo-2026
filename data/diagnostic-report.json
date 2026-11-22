@@ -1,0 +1,9 @@
+{
+  "timestamp": "2026-11-21T02:31:57.731Z",
+  "pid": 8782,
+  "nodeVersion": "v20.11.0",
+  "stage": "verify-all",
+  "port": 45755,
+  "error": "Timeout on GET /healthz",
+  "stack": "Error: Timeout on GET /healthz\n    at ClientRequest.<anonymous> (file:///home/Woken/career-orchestrator-stack/tests/verify-all.js:39:41)\n    at ClientRequest.emit (node:events:518:28)\n    at Socket.emitRequestTimeout (node:_http_client:840:9)\n    at Object.onceWrapper (node:events:632:28)\n    at Socket.emit (node:events:530:35)\n    at Socket._onTimeout (node:net:589:8)\n    at listOnTimeout (node:internal/timers:573:17)\n    at process.processTimers (node:internal/timers:514:7)"
+}

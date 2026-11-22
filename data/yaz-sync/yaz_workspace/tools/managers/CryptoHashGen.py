@@ -1,0 +1,1 @@
+import hashlib; print(hashlib.sha3_512(b'YAZ_ENTROPY').hexdigest())

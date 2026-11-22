@@ -1,0 +1,1 @@
+import psutil; procs = sorted(psutil.process_iter(['pid', 'name', 'cpu_percent', 'memory_percent']), key=lambda x: x.info['memory_percent'] or 0, reverse=True); [print(f"{p.info['pid']}: {p.info['name']} (CPU: {p.info['cpu_percent']}%, RAM: {p.info['memory_percent']:.2f}%)") for p in procs[:15]]

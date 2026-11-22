@@ -1,0 +1,1 @@
+print('iPerf3 simulated bandwidth: 940 Mbits/sec')

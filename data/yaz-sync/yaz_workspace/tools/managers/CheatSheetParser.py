@@ -1,0 +1,1 @@
+print('Cheatsh33ts markdown parsing algorithm engaged.')

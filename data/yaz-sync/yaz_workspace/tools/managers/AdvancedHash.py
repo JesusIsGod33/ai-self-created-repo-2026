@@ -1,0 +1,2 @@
+#!/home/infuselink/yaz_env/bin/python3
+import hashlib, sys; d=sys.argv[1].encode() if len(sys.argv)>1 else b'YAZ'; print(f'MD5: {hashlib.md5(d).hexdigest()}\nSHA256: {hashlib.sha256(d).hexdigest()}\nSHA512: {hashlib.sha512(d).hexdigest()}\nBLAKE2B: {hashlib.blake2b(d).hexdigest()}')

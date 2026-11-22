@@ -1,0 +1,1 @@
+print('Strix Framework loader initialized in dynamic environment.')

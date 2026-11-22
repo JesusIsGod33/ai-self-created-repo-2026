@@ -1,0 +1,1 @@
+print('Mock Sniffer: Captured 240 packets. Analysis clean.')

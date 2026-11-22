@@ -1,0 +1,1 @@
+d=['A'*1024**2 for _ in range(50)]; print('Allocated 50MB. Released.'); del d

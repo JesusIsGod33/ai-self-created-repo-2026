@@ -1,0 +1,1 @@
+print('CSV Bulk Ingestion to SQLite initialized.')

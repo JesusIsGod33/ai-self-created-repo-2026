@@ -1,0 +1,1 @@
+import psutil; [print(f'{p.pid}: {p.name()}') for p in psutil.process_iter()][:10]

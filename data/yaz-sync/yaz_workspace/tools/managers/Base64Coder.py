@@ -1,0 +1,1 @@
+import base64, sys; op=sys.argv[1] if len(sys.argv)>1 else 'enc'; dat=sys.argv[2] if len(sys.argv)>2 else 'YAZ'; print(base64.b64encode(dat.encode()).decode() if op=='enc' else base64.b64decode(dat.encode()).decode())

@@ -1,0 +1,1 @@
+import ast, sys; c=open(sys.argv[1]).read() if len(sys.argv)>1 else 'print(1)'; t=ast.parse(c); print(f'Classes: {[n.name for n in ast.walk(t) if isinstance(n, ast.ClassDef)]}\nFuncs: {[n.name for n in ast.walk(t) if isinstance(n, ast.FunctionDef)]}')

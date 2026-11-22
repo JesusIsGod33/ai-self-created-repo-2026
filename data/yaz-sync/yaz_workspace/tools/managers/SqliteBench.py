@@ -1,0 +1,1 @@
+import sqlite3, time; t=time.time(); c=sqlite3.connect(':memory:'); c.execute('CREATE TABLE t (i INT)'); c.executemany('INSERT INTO t VALUES (?)', [(i,) for i in range(100000)]); c.execute('SELECT SUM(i) FROM t'); print(f'SQLite 100k Insert+Sum in {time.time()-t:.4f}s')

@@ -1,0 +1,43 @@
+{
+  "id": "repair-1795226571738",
+  "timestamp": "2026-11-21T02:02:51.738Z",
+  "plannerModel": "qwen2.5:1.5b-instruct",
+  "plan": {
+    "summary": "Brahma Sol self-heal requested",
+    "actions": [
+      "ensure_ollama_daemon",
+      "ensure_project_directories",
+      "ensure_executable_scripts",
+      "check_healthz_loopback",
+      "run_verify_all_suite"
+    ]
+  },
+  "executionResults": [
+    {
+      "action": "ensure_ollama_daemon",
+      "ok": true,
+      "detail": "Local Ollama daemon verified or started on 127.0.0.1:11434."
+    },
+    {
+      "action": "ensure_project_directories",
+      "ok": true,
+      "detail": "Verified required project, tool, and data directories."
+    },
+    {
+      "action": "ensure_executable_scripts",
+      "ok": true,
+      "detail": "Set executable permissions on 6 shell scripts."
+    },
+    {
+      "action": "check_healthz_loopback",
+      "ok": false,
+      "detail": "Healthz loopback check failed: node:internal/process/esm_loader:34\n      internalBinding('errors').triggerUncaughtException(\n                                ^\n\nError: healthz probe timeout\n    at ClientRequest.<anonymous> (file:///home/Woken/career-orchestrator-stack/[eval1]:17:51)\n    at ClientRequest.emit (node:events:518:28)\n    at Socket.emitRequestTimeout (node:_http_client:840:9)\n    at Object.onceWrapper (node:events:632:28)\n    at Socket.emit (node:events:530:35)\n    at Socket._onTimeout (node:net:589:8)\n    at listOnTimeout (node:internal/timers:573:17)\n    at process.processTimers (node:internal/timers:514:7)\n\nNode.js v20.11.0"
+    },
+    {
+      "action": "run_verify_all_suite",
+      "ok": false,
+      "detail": "verify-all failed: spawnSync node ETIMEDOUT"
+    }
+  ],
+  "allSucceeded": false
+}

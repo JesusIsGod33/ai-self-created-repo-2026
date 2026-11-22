@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="100%" height="100%" role="img" aria-label="Allegedly Insane Signature Heavyweight Streetwear Tee">
+  <rect width="400" height="400" fill="#161E2E"/>
+  <rect x="12" y="12" width="376" height="376" rx="16" fill="none" stroke="#334155"/>
+  <path d="M140 110 L100 150 L130 180 L150 165 L150 270 L250 270 L250 165 L270 180 L300 150 L260 110 Q200 140 140 110Z" fill="none" stroke="#F1F5F9" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="200" y="330" text-anchor="middle" fill="#F1F5F9" font-family="Inter, sans-serif" font-size="15" font-weight="700">Allegedly Insane Signature</text>
+  <text x="200" y="352" text-anchor="middle" fill="#F1F5F9" font-family="Inter, sans-serif" font-size="15" font-weight="700">Heavyweight Streetwear Tee</text>
+  <text x="200" y="45" text-anchor="middle" fill="#F1F5F9" font-family="Inter, sans-serif" font-size="12" font-weight="600" letter-spacing="2">ALLEGEDLY INSANE</text>
+</svg>

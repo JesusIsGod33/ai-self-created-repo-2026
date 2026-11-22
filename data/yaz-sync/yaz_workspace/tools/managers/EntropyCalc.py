@@ -1,0 +1,1 @@
+import math, collections, sys; data=sys.argv[1] if len(sys.argv)>1 else 'YAZ CORE'; counts=collections.Counter(data); e=-sum((c/len(data))*math.log2(c/len(data)) for c in counts.values()); print(f'Shannon Entropy: {e:.4f}')

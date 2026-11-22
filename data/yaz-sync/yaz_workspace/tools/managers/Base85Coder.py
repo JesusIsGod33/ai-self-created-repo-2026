@@ -1,0 +1,1 @@
+import base64; print(base64.b85encode(b'YAZ_CORE').decode())
